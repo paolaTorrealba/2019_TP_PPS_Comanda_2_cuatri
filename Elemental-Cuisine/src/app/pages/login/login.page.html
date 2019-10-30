@@ -1,18 +1,36 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title class="ion-text-center">Iniciar sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="floating">Correo electrónico</ion-label>
-    <ion-input type="text" name="email" [(ngModel)]="email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
-  </ion-item>
-  <br>
-  <ion-button (click)="onSubmitLogin()" expand="block">Ingresar</ion-button>
+<ion-content>
+  <div class="login-wrap">
+    <div class="login-html">
+      <span class="tab">Iniciar Sesión</span>
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmitLogin(form.value)">
+        <div class="group">
+          <ion-label for="user" class="label" position="floating">Correo electrónico</ion-label>
+          <input type="text" class="input" formControlName="email" required>
+        </div>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message" *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        <div class="group">
+          <ion-label for="pass" class="label" position="floating">Contraseña</ion-label>
+          <input type="password" class="input" formControlName="password" data-type="password"  required>
+        </div>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.password">
+            <div class="error-message" *ngIf="form.get('password').hasError(validation.type) && (form.get('password').dirty || form.get('password').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <br>
+        <div class="group">
+          <ion-button shape="round" type="submit" [disabled]="!form.valid">Ingresar</ion-button>
+        </div>
+      </form>
+      <div class="hr"></div>
+    </div>
+  </div>  
 </ion-content>
