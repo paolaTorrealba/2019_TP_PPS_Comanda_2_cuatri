@@ -7,7 +7,9 @@ const routes: Routes = [
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'listado', loadChildren: './pages/lists/lists.module#ListsPageModule' },  { path: 'user-list', loadChildren: './pages/user-list/user-list.module#UserListPageModule' },
   { path: 'table-list', loadChildren: './pages/table-list/table-list.module#TableListPageModule' },
-  { path: 'product-list', loadChildren: './pages/product-list/product-list.module#ProductListPageModule' }
+  { path: 'product-list', loadChildren: './pages/product-list/product-list.module#ProductListPageModule' },
+  { path: 'pagina-x', loadChildren: './pagina-x/pagina-x.module#PaginaXPageModule' },
+  { path: 'pagina-x', loadChildren: './pagina-x/pagina-x.module#PaginaXPageModule' }
 
 
 ];
