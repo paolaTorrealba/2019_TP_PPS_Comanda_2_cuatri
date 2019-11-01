@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: '', component: ListsPage, children: [
     { path: 'usuarios', loadChildren: '../user-list/user-list.module#UserListPageModule' },
     { path: 'mesas', loadChildren: '../table-list/table-list.module#TableListPageModule' },
-    { path: 'productos', loadChildren: '../product-list/product-list.module#ProductListPageModule' },    
+    { path: 'productos', loadChildren: '../product-list/product-list.module#ProductListPageModule' }
   ]}
 ];
 

@@ -15,8 +15,8 @@ export class LoginPage implements OnInit {
   form: FormGroup;
 
   constructor(
-    private authService: AuthService, 
-    private loadingService: LoadingService,     
+    private authService: AuthService,
+    private loadingService: LoadingService,
     private formBuilder: FormBuilder
   ) { }
 
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
       ])),
     });
   }
- 
+
   validation_messages = {
     'email': [
       { type: 'required', message: 'El email es requerido.' },
