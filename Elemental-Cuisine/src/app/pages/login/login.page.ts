@@ -52,7 +52,7 @@ export class LoginPage implements OnInit {
         this.loadingService.closeLoadingAndRedirect("/home");
       })
       .catch(err => {
-        this.loadingService.closeLoading("Error", "Verifique usuario y contraseĂ±a", 'error');
+        this.loadingService.closeLoading("Error", "Verifique usuario y contraseña", 'error');
       });
   }
 }
