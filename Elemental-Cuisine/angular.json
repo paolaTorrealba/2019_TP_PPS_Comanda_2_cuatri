@@ -176,7 +176,7 @@
   "cli": {
     "defaultCollection": "@ionic/angular-toolkit"
   },
-  "schematics": {
+   "schematics": {
     "@ionic/angular-toolkit:component": {
       "styleext": "scss",
       "spec": false
