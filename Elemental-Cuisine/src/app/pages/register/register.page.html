@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- <app-client></app-client> -->
+<ion-item>
+  <ion-label floating>Nombre </ion-label>
+  <ion-input type="text" required  name="nombre"></ion-input>
+</ion-item>
+<ion-item >
+  <ion-label floating>Apellido </ion-label>
+  <ion-input type="text" required  name="apellido"></ion-input>
+</ion-item>
+<ion-item >
+  <ion-label floating>DNI </ion-label>
+  <ion-input type="number" minlength="8" maxlength="8" required  name="dni"></ion-input>
+  <button ion-button block >Escanear DNI</button>
+</ion-item>
+<ion-item>
+  <ion-label floating>Correo Electrónico </ion-label>
+  <ion-input type="email" required name="email"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label floating>Clave </ion-label>
+  <ion-input type="password" minlength="6" required  name="clave"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label floating>Repetir Clave </ion-label>
+  <ion-input type="password" minlength="6" required  name="clave2"></ion-input>
+</ion-item>
+<br>
+<button ion-button block  (click)="abrirCamara()">Sacar Foto</button>
+<button  ion-button block  (click)="escanear()">Escanear DNI</button>
+<button ion-button block color="secondary" (click)="alta()">Registrar</button>
+<button ion-button block color="danger" (click)="volver()">Cancelar</button> 

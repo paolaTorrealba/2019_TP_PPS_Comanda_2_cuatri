@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -13,9 +13,12 @@ import { firebaseConfig } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+
+
+
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+    entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
