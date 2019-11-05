@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Productos</ion-title>
     <ion-buttons slot="primary">
-      <ion-button>
+      <ion-button routerLink="/agregar-producto">
         <ion-icon slot="icon-only" color="success" name="add-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -14,10 +14,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item href="producto-detalle">
+    <ion-item routerLink="/producto-detalle">
       <ion-icon name="beer"></ion-icon>
       <ion-label>&nbsp;Bebida</ion-label>
-      <ion-button color="medium">
+      <ion-button color="medium" routerLink="/agregar-producto" (click)="onEvent($event)">
         <ion-icon name="create"></ion-icon>
       </ion-button>
       <ion-button color="danger">

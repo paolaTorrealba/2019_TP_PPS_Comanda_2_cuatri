@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="listado/productos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-button (click)="PickMultipleImages()">Pick Multiple Images</ion-button>
+    <ion-list *ngFor="let image of images">
+        <ion-item>
+          <img src={{image}} />
+        </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

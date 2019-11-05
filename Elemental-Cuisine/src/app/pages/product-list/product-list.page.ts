@@ -12,4 +12,7 @@ export class ProductListPage implements OnInit {
   ngOnInit() {
   }
 
+  onEvent(event) {
+    event.stopPropagation();
+ }
 }

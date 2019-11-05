@@ -9,7 +9,9 @@ const routes: Routes = [
   { path: 'user-list', loadChildren: './pages/user-list/user-list.module#UserListPageModule' },
   { path: 'table-list', loadChildren: './pages/table-list/table-list.module#TableListPageModule' },
   { path: 'product-list', loadChildren: './pages/product-list/product-list.module#ProductListPageModule' },
-  { path: 'producto-detalle', loadChildren: './pages/product-detail/product-detail.module#ProductDetailPageModule' }
+  { path: 'producto-detalle', loadChildren: './pages/product-detail/product-detail.module#ProductDetailPageModule' },
+  { path: 'agregar-producto', loadChildren: './pages/product-add/product-add.module#ProductAddPageModule' }
+
 
 ];
 
