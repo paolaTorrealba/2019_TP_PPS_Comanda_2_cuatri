@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,7 @@ export class LoginPage implements OnInit {
   form: FormGroup;
 
   constructor(
+    public router: Router,
     private authService: AuthService, 
     private loadingService: LoadingService,     
     private formBuilder: FormBuilder
@@ -54,5 +57,12 @@ export class LoginPage implements OnInit {
       .catch(err => {
         this.loadingService.closeLoading("Error", "Verifique usuario y contraseña", 'error');
       });
+  }
+
+  login (){
+  
+  }
+  register(){ 
+  	this.router.navigate(['/register']);
   }
 }
