@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import * as firebase from "firebase";
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
@@ -31,13 +31,13 @@ export class RegisterPage implements OnInit {
     private userService: UserServiceService,
     private authService: AuthService, 
     private camera: Camera, 
-    // private scanner: BarcodeScanner, 
+    private scanner: BarcodeScanner, 
     public navCtrl: NavController) {
   }
 
   ngOnInit() {}
 
-  //el Alta es solo para Cliente
+  //El Alta es solo para Cliente
   alta(){
     let data;
     if(this.nombre != undefined && this.foto != undefined && this.email != undefined
@@ -51,10 +51,10 @@ export class RegisterPage implements OnInit {
               'foto': this.foto,            
               'perfil': 'cliente',
               'estado': this.estado,            
-              'email': this.email            
-          }
+              'email': this.email          
+          }  
    
-          console.log("guardar uusuario: ", data);
+          console.log("guardar usuario: ", data);
     this.userService.guardarUsuario(data).then(response =>{
             //agregar un alert o popup
             //ir a home de Cliente
@@ -96,7 +96,7 @@ export class RegisterPage implements OnInit {
   async abrirCamara() {
 
     let imageName = this.dni + this.apellido;
-    this.foto = imageName; //solo para probar
+    this.foto = imageName; //--> solo para probar asigno esta foto.
 
     try {
 
@@ -130,21 +130,21 @@ export class RegisterPage implements OnInit {
   }
 
   escanear(){
-    // let options = { prompt: "Escaneá el DNI", formats: "PDF_417" };
+    let options = { prompt: "Escaneá el DNI", formats: "PDF_417" };
 
-    // this.scanner.scan(options).then(barcodeData => {
-    //   alert(barcodeData.text);
-    //   let contenido = barcodeData.text;
-    //   let array = contenido.split('@');
-    //   this.dni = +array[4];
-    //   if(this.nombre == "" || this.nombre == undefined)
-    //     this.nombre = array[2];
-    //   if(this.apellido == "" || this.apellido == undefined)
-    //     this.apellido = array[1];
+    this.scanner.scan(options).then(barcodeData => {
+      alert(barcodeData.text);
+      let contenido = barcodeData.text;
+      let array = contenido.split('@');
+      this.dni = +array[4];
+      if(this.nombre == "" || this.nombre == undefined)
+        this.nombre = array[2];
+      if(this.apellido == "" || this.apellido == undefined)
+        this.apellido = array[1];
 
-    // }).catch(err => { 
-    //   console.log('Error', err);
-    // });
+    }).catch(err => { 
+      console.log('Error', err);
+    });
   }
 
   showAlert() {   

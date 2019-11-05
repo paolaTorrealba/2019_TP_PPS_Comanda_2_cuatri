@@ -8,7 +8,4 @@ export class User {
     dni: string;
     apellido:string;
     foto:string;
-
-
-    constructor(){}
 }

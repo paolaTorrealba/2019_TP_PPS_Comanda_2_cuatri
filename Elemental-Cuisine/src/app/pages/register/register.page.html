@@ -15,7 +15,6 @@
 <ion-item >
   <ion-label floating>DNI </ion-label>
   <ion-input type="number" minlength="8" maxlength="8" required [(ngModel)]="dni" name="dni"></ion-input>
-  <button ion-button block color="primary">Escanear DNI</button>
 </ion-item>
 <ion-item>
   <ion-label floating>Correo Electrónico </ion-label>
@@ -30,8 +29,7 @@
   <ion-input type="password" minlength="6" required [(ngModel)]="clave2" name="clave2"></ion-input>
 </ion-item>
 <br>
-<button ion-button block color="primary" (click)="abrirCamara()">Sacar Foto</button>
-<button ion-button block color="primary" (click)="escanear()">Escanear DNI</button>
-<button ion-button block color="secondary" (click)="alta()">Registrar</button>
-<button ion-button block color="danger" (click)="volver()">Cancelar</button>
-
+<ion-button color="medium" (click)="abrirCamara()">Sacar Foto</ion-button>
+<ion-button color="medium" (click)="escanear()">Escanear DNI</ion-button>
+<ion-button color="medium" (click)="alta()">Registrar</ion-button>
+<ion-button color="medium" (click)="volver()">Cancelar</ion-button>
