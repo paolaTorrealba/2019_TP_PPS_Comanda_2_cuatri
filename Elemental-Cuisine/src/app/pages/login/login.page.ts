@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/classes/user';
+
 
 @Component({
   selector: 'app-login',
@@ -13,14 +16,18 @@ export class LoginPage implements OnInit {
   private email: string;
   private password: string;
   form: FormGroup;
+  defaultUsers: Array<any> = [];
+  user: User;
 
   constructor(
+    public router: Router,
     private authService: AuthService, 
     private loadingService: LoadingService,     
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.addDefaultUser();
     this.form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -44,6 +51,15 @@ export class LoginPage implements OnInit {
     ]
   };
 
+  addDefaultUser(){
+    this.defaultUsers.push({"email":"elementest@gmail.com", "password":"123456"});
+    this.defaultUsers.push({"email":"invitado@invitado.com", "password":"123456"});
+  }
+
+  setDefaultUser(){
+    this.onSubmitLogin(this.user);
+  }
+
   onSubmitLogin(form) {
     this.loadingService.showLoading("Espere..");
 
@@ -52,7 +68,14 @@ export class LoginPage implements OnInit {
         this.loadingService.closeLoadingAndRedirect("/home");
       })
       .catch(err => {
-        this.loadingService.closeLoading("Error", "Verifique usuario y contraseĂ±a", 'error');
+        this.loadingService.closeLoading("Error", "Verifique usuario y contraseña", 'error');
       });
+  }
+
+  login (){
+  
+  }
+  register(){ 
+  	this.router.navigate(['/register']);
   }
 }
