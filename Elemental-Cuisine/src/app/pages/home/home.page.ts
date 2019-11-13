@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/classes/user';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +11,16 @@ import Swal from 'sweetalert2';
 })
 export class HomePage {
 
-  constructor() { }
+  currentUser: User;
+
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) { 
+    this.userService.getUser(this.authService.getCurrentUser().uid).then(user => {
+      this.currentUser = Object.assign(new User, user.data());
+    })
+  }
 
   showAlert() {
     // Swal.fire('Oops...', 'Something went wrong!', 'error');

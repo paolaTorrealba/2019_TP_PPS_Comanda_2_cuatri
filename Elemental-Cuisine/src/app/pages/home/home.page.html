@@ -12,7 +12,7 @@
     <ion-icon slot="start" name="star"></ion-icon>
     Hola
   </ion-button>
-  <ion-button routerLink="/listado">
+  <ion-button *ngIf="currentUser?.profile=='admin'" routerLink="/listado">
     Listado
   </ion-button>
 </ion-content>

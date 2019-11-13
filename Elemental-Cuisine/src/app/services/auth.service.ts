@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map } from 'rxjs/operators';
-import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -9,7 +7,10 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private AFauth: AngularFireAuth, private router: Router) { }
+  constructor(
+    private AFauth: AngularFireAuth, 
+    private router: Router,
+  ) { }
 
   logIn(email: string, password: string) {
     return new Promise((resolve, rejected) => {
@@ -23,6 +24,14 @@ export class AuthService {
     this.AFauth.auth.signOut().then(auth => {
       this.router.navigate(['/login']);
     })
+  }
+
+  getCurrentUser(){
+    return this.AFauth.auth.currentUser;
+  }
+
+  createUser(user){
+    return this.AFauth.auth.createUserWithEmailAndPassword(user.email, user.password);
   }
 
   // isLogged() {

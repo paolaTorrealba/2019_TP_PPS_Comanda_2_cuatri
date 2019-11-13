@@ -50,8 +50,8 @@ export class LoginPage implements OnInit {
   };
 
   addDefaultUser(){
-    this.defaultUsers.push({"email":"elementest@gmail.com", "password":"123456"});
-    this.defaultUsers.push({"email":"invitado@invitado.com", "password":"123456"});
+    this.defaultUsers.push({"email":"admin@admin.com", "password":"123456"});
+    this.defaultUsers.push({"email":"cliente@cliente.com", "password":"123456"});
   }
 
   setDefaultUser(){
