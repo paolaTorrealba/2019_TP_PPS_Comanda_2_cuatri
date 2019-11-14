@@ -8,18 +8,11 @@ const routes: Routes = [
   { path: 'listado', loadChildren: './pages/lists/lists.module#ListsPageModule' },
   { path: 'user-list', loadChildren: './pages/user-list/user-list.module#UserListPageModule' },
   { path: 'table-list', loadChildren: './pages/table-list/table-list.module#TableListPageModule' },
-<<<<<<< HEAD
   { path: 'product-list', loadChildren: './pages/product-list/product-list.module#ProductListPageModule' },
   { path: 'producto-detalle', loadChildren: './pages/product-detail/product-detail.module#ProductDetailPageModule' },
   { path: 'agregar-producto', loadChildren: './pages/product-add/product-add.module#ProductAddPageModule' },
   { path: 'piedra-papel-tijera', loadChildren: './pages/rock-paper-scissors/rock-paper-scissors.module#RockPaperScissorsPageModule' }
-
-
-
 ];
-=======
-  { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' }];
->>>>>>> elementales
 
 
 @NgModule({
