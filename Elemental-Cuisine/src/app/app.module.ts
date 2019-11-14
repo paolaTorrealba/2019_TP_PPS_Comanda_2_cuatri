@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -12,13 +12,17 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { firebaseConfig } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from "@angular/fire/firestore";
+
+
 
 import {ImagePicker} from '@ionic-native/image-picker/ngx';
 import {File} from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+    entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -27,7 +31,9 @@ import {File} from '@ionic-native/file/ngx';
     AngularFireAuthModule
   ],
   providers: [
+    AngularFirestore,
     StatusBar,
+    BarcodeScanner,
     SplashScreen,
     Camera,
     File,
