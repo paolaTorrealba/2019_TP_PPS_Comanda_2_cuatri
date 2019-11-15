@@ -1,7 +1,0 @@
-{
-  "name": "Elemental-Cuisine",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
