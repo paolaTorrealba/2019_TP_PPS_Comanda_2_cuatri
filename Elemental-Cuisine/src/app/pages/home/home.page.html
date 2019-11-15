@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Menú Principal
+      <ion-icon routerLink="/configuracion" class="ion-float-right" name="settings"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="showAlert()">
+    <ion-icon slot="start" name="star"></ion-icon>
+    Hola
+  </ion-button>
+
+  <ion-button *ngIf="currentUser?.profile == 'dueño'" routerLink="/listado">
+    Listado
+  </ion-button>
+
+  <ion-button *ngIf="currentUser?.profile == 'cliente'" (click)="scan()">
+    Lista de Espera
+  </ion-button>
+</ion-content>
