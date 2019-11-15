@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Productos</ion-title>
     <ion-buttons slot="primary">
-      <ion-button>
+      <ion-button routerLink="/registro/producto">
         <ion-icon slot="icon-only" color="success" name="add-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -18,67 +18,7 @@
       <ion-item>
         <ion-icon name="beer"></ion-icon>
         <ion-label>&nbsp;Bebida</ion-label>
-        <ion-button color="medium">
-          <ion-icon name="create"></ion-icon>
-        </ion-button>
-        <ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="pizza"></ion-icon>
-        <ion-label>&nbsp;Comida</ion-label>
-        <ion-button color="medium">
-          <ion-icon name="create"></ion-icon>
-        </ion-button>
-        <ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="beer"></ion-icon>
-        <ion-label>&nbsp;Bebida</ion-label>
-        <ion-button color="medium">
-          <ion-icon name="create"></ion-icon>
-        </ion-button>
-        <ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="pizza"></ion-icon>
-        <ion-label>&nbsp;Comida</ion-label>
-        <ion-button color="medium">
-          <ion-icon name="create"></ion-icon>
-        </ion-button>
-        <ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="beer"></ion-icon>
-        <ion-label>&nbsp;Bebida</ion-label>
-        <ion-button color="medium">
-          <ion-icon name="create"></ion-icon>
-        </ion-button>
-        <ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="pizza"></ion-icon>
-        <ion-label>&nbsp;Comida</ion-label>
-        <ion-button color="medium">
-          <ion-icon name="create"></ion-icon>
-        </ion-button>
-        <ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="beer"></ion-icon>
-        <ion-label>&nbsp;Bebida</ion-label>
-        <ion-button color="medium">
+        <ion-button color="medium" routerLink="/editar" (click)="editarProducto($event)">
           <ion-icon name="create"></ion-icon>
         </ion-button>
         <ion-button color="danger">

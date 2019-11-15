@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/classes/user';
+import { QrscannerService } from 'src/app/services/qrscanner.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomePage {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private qrscannerService: QrscannerService
   ) { 
     this.userService.getUser(this.authService.getCurrentUser().uid).then(user => {
       this.currentUser = Object.assign(new User, user.data());
@@ -30,5 +32,9 @@ export class HomePage {
       padding: '3em',
       backdrop: false
     })
+  }
+
+  scan(){
+    this.qrscannerService.scanQr();
   }
 }
