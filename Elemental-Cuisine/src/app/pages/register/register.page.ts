@@ -6,8 +6,9 @@ import { Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/classes/user';
+import { QrscannerService } from 'src/app/services/qrscanner.service';
 
 @Component({
   selector: 'app-register',
@@ -16,19 +17,24 @@ import { User } from 'src/app/classes/user';
 })
 export class RegisterPage implements OnInit {
 
-  user:User;
+  private user:User;
+  private object;
 
   constructor(
-    public router: Router,
+    private router: Router,
     private userService: UserService,
     private authService: AuthService, 
     private camera: Camera, 
-    private scanner: BarcodeScanner, 
-    public navCtrl: NavController) {
+    private qrscannerService: QrscannerService, 
+    private navCtrl: NavController,
+    private activatedRoute: ActivatedRoute
+  ) {
       this.user = new User();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.object = this.activatedRoute.snapshot.paramMap.get('object');
+  }
 
   //El Alta es solo para Cliente
   alta(){ 
@@ -38,10 +44,6 @@ export class RegisterPage implements OnInit {
       this.router.navigate(['/home']);
     });
   }  	
-
-  returnToLogin(){
-    this.router.navigate(['/login']);
-  }
 
   async abrirCamara() {
 
@@ -78,15 +80,9 @@ export class RegisterPage implements OnInit {
   }
 
   scan(){
-    let options = { prompt: "Escaneá el DNI", formats: "PDF_417" };
-
-    this.scanner.scan(options).then(barcodeData => {
-      alert(barcodeData.text);
-      let contenido = barcodeData.text;
-      let array = contenido.split('@');
-    }).catch(err => { 
-      console.log('Error', err);
-    });
+    let dniData = this.qrscannerService.scanDni();
+    alert(dniData);
   }
+
 
 }

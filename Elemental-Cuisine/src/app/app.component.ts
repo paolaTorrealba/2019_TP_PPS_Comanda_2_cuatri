@@ -11,7 +11,7 @@ import { timer } from 'rxjs';
 })
 export class AppComponent {
 
-  showSplash: Boolean = true;
+  showSplash: Boolean = false;
 
   constructor(
     private platform: Platform,
