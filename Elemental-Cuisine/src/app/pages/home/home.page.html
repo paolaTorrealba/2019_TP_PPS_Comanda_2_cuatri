@@ -7,17 +7,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="currentUser?.profile == 'dueño'">
   <ion-button (click)="showAlert()">
     <ion-icon slot="start" name="star"></ion-icon>
     Hola
   </ion-button>
 
-  <ion-button *ngIf="currentUser?.profile == 'dueño'" routerLink="/listado">
+  <ion-button routerLink="/listado">
     Listado
   </ion-button>
+</ion-content>
 
-  <ion-button *ngIf="currentUser?.profile == 'cliente'" (click)="scan()">
+<ion-content *ngIf="currentUser?.profile == 'cliente'">
+  <ion-button (click)="addToWaitList()">
+    <ion-icon slot="start" class="list" name="list"></ion-icon>
+    Lista de Espera
+  </ion-button>
+  <ion-button>
+    Encuestas
+  </ion-button>
+</ion-content>
+
+<ion-content *ngIf="currentUser?.profile == 'mozo'">
+  <ion-button routerLink="/lista-de-espera">
+    <ion-icon slot="start" class="list" name="list"></ion-icon>
     Lista de Espera
   </ion-button>
 </ion-content>

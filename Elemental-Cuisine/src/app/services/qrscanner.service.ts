@@ -22,10 +22,8 @@ export class QrscannerService {
   }
 
   scanQr(){
-    this.scanner.scan().then(barcodeData => {
+    return this.scanner.scan().then(barcodeData => {
       return barcodeData.text;
-    }).catch(err => { 
-      console.log('Error', err);
-    });
+    }).catch(err => { });
   }
 }
