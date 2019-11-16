@@ -3,11 +3,11 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/classes/user';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.page.html',
-  styleUrls: ['./user-list.page.scss'],
+  selector: 'app-wait-list',
+  templateUrl: './wait-list.page.html',
+  styleUrls: ['./wait-list.page.scss'],
 })
-export class UserListPage implements OnInit {
+export class WaitListPage implements OnInit {
 
   users:Array<User>;
 
@@ -16,24 +16,13 @@ export class UserListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getAll('usuarios').subscribe(users => {
+    this.userService.getAll('listaDeEspera').subscribe(users => {
       this.users = new Array<User>();
       users.forEach((user:User) => {
-        if(user.profile != null && user.profile != "cliente")
+        if(user.profile != null && user.profile == "cliente")
           this.users.push(user);
       })
     });
   }
 
-  addEmployee(){
-
-  }
-
-  modifyEmployee(user){
-
-  }
-
-  deleteEmployee(user){
-    
-  }
 }

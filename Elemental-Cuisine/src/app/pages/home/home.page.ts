@@ -34,7 +34,14 @@ export class HomePage {
     })
   }
 
-  scan(){
-    this.qrscannerService.scanQr();
+  addToWaitList(){
+    this.qrscannerService.scanQr().then(response => {
+      console.log(response);
+      if(response == 'listaDeEspera'){
+        this.userService.setDocument('listaDeEspera', this.authService.getCurrentUser().uid, {})
+        console.log("Agregado a lista de espera");
+      }
+    });
+
   }
 }
