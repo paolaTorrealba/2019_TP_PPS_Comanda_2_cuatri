@@ -20,12 +20,16 @@ export class UserService {
     })
   }
 
+  setDocument(collection:string, id:string, object:object): void {
+    this.db.collection(collection).doc(id).set(object);
+  }
+
   getUser(userId){
     return this.db.collection('usuarios').doc(userId).get().toPromise();
   }
 
-  getAllUsers(){
-    return this.db.collection('usuarios').valueChanges();
+  getAll(collection){
+    return this.db.collection(collection).valueChanges();
   }
    
 }
