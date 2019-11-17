@@ -16,13 +16,15 @@ export class WaitListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getAll('listaDeEspera').subscribe(users => {
-      this.users = new Array<User>();
-      users.forEach((user:User) => {
-        if(user.profile != null && user.profile == "cliente")
-          this.users.push(user);
+    this.userService.getAllDocuments('listaDeEspera').subscribe(clients => {
+      clients.docs.map(doc => doc.id).forEach(userId => {
+        this.users = new Array<User>();
+        this.userService.getUser(userId).then(user => {
+          this.users.push(Object.assign(new User, user.data()));
+        });
       })
     });
   }
+
 
 }

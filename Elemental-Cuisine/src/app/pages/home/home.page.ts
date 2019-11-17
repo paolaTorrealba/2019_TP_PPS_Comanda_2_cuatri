@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/classes/user';
 import { QrscannerService } from 'src/app/services/qrscanner.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,9 @@ export class HomePage {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private qrscannerService: QrscannerService
+    private qrscannerService: QrscannerService,
+    private notificationService: NotificationService,
+    private router: Router
   ) { 
     this.userService.getUser(this.authService.getCurrentUser().uid).then(user => {
       this.currentUser = Object.assign(new User, user.data());
@@ -36,12 +40,25 @@ export class HomePage {
 
   addToWaitList(){
     this.qrscannerService.scanQr().then(response => {
-      console.log(response);
       if(response == 'listaDeEspera'){
-        this.userService.setDocument('listaDeEspera', this.authService.getCurrentUser().uid, {})
-        console.log("Agregado a lista de espera");
+        let userId = this.authService.getCurrentUser().uid
+        this.userService.setDocument('listaDeEspera', userId, {});
+        this.userService.update('usuarios', userId, { 'status':'enEspera'}).then(() => {
+          this.notificationService.presentToast("Agregado a lista de espera", "success", "top");
+          this.userService.getUser(this.authService.getCurrentUser().uid).then(user => {
+            this.currentUser = Object.assign(new User, user.data());
+          })
+        });
       }
     });
+  }
 
+  removeFromWaitList(){
+    let userId = this.authService.getCurrentUser().uid
+    this.userService.deleteDocument('listaDeEspera', userId);
+    this.userService.update('usuarios', userId, { 'status':'sinAtender'}).then(() => {
+      this.notificationService.presentToast("Eliminado de la Lista de Espera", "warning", "top");
+      this.router.navigateByUrl("/login");
+    })
   }
 }

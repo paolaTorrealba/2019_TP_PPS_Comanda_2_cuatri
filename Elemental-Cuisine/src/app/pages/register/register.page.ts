@@ -32,6 +32,7 @@ export class RegisterPage implements OnInit {
   //El Alta es solo para Cliente
   alta(){ 
     this.user.profile = "cliente";
+    this.user.status = "sinAtender"
     this.userService.saveUser(this.user).then(response =>{
       //agregar un alert o popup
       this.router.navigate(['/home']);

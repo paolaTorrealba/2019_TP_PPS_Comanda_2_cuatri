@@ -18,7 +18,6 @@ export class LoginPage implements OnInit {
   user: User;
 
   constructor(
-    public router: Router,
     private authService: AuthService, 
     private loadingService: LoadingService,     
     private formBuilder: FormBuilder
@@ -52,6 +51,7 @@ export class LoginPage implements OnInit {
   addDefaultUser(){
     this.defaultUsers.push({"email":"admin@admin.com", "password":"123456"});
     this.defaultUsers.push({"email":"cliente@cliente.com", "password":"123456"});
+    this.defaultUsers.push({"email":"mozo@mozo.com", "password":"123456"});
   }
 
   setDefaultUser(){

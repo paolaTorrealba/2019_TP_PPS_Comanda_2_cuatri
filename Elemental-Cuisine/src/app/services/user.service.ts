@@ -31,5 +31,17 @@ export class UserService {
   getAll(collection){
     return this.db.collection(collection).valueChanges();
   }
-   
+
+  getAllDocuments(collection){
+    return this.db.collection(collection).get();
+  }
+
+  update(collection: string, id:string, objeto:any) {
+    return this.db.doc<any>(`${collection}/${id}`).update(objeto);
+  }
+
+
+  deleteDocument(collection: string, id: string) {
+    return this.db.doc<any>(`${collection}/${id}`).delete();
+}
 }

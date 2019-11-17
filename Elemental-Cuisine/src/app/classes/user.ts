@@ -8,4 +8,5 @@ export class User {
     photo:string;
     dni:number;
     cuil:number;
+    status:string;
 }
