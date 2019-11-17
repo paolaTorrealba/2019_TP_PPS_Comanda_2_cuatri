@@ -9,22 +9,24 @@ import { User } from 'src/app/classes/user';
 })
 export class WaitListPage implements OnInit {
 
-  users:Array<User>;
+  users:Array<Object>;
 
   constructor(
     private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.userService.getAllDocuments('listaDeEspera').subscribe(clients => {
-      clients.docs.map(doc => doc.id).forEach(userId => {
-        this.users = new Array<User>();
-        this.userService.getUser(userId).then(user => {
-          this.users.push(Object.assign(new User, user.data()));
-        });
+    this.userService.getAll('listaDeEspera').subscribe(clients => {
+      this.users = new Array<Object>();
+      clients.forEach(user => {
+        this.users.push(user);
       })
+      this.users.sort((a:any,b:any) => (a.date > b.date) ? -1 : 1);
     });
   }
 
+  takeOrder(){
+    console.log("Orden tomada");
+  }
 
 }
