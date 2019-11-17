@@ -24,15 +24,13 @@ export class HomePage {
     private notificationService: NotificationService,
     private router: Router
   ) {
-    if (isNullOrUndefined(this.authService.getCurrentUser())) {
-      this.currentUser = new User();
-      this.currentUser.profile = "dueño";
-      return;
-    }
-
-    this.userService.getUser(this.authService.getCurrentUser().uid).then(user => {
-      this.currentUser = Object.assign(new User, user.data());
-    })
+      let user = this.authService.getCurrentUser();
+      if (isNullOrUndefined(user)) {
+        this.router.navigateByUrl("/login");
+      }
+      this.userService.getUser(user.uid).then(userData => {
+        this.currentUser = Object.assign(new User, userData.data());
+      })
   }
 
   showAlert() {
@@ -48,11 +46,10 @@ export class HomePage {
   addToWaitList() {
     this.qrscannerService.scanQr().then(response => {
       if (response == 'listaDeEspera') {
-        let userId = this.authService.getCurrentUser().uid
-        this.userService.setDocument('listaDeEspera', userId, {});
-        this.userService.update('usuarios', userId, { 'status': 'enEspera' }).then(() => {
+        this.userService.setDocument('listaDeEspera', this.currentUser.id.toString(), { 'date' : Date.now(), 'name': this.currentUser.name });
+        this.userService.update('usuarios', this.currentUser.id.toString(), { 'status': 'enEspera' }).then(() => {
           this.notificationService.presentToast("Agregado a lista de espera", "success", "top");
-          this.userService.getUser(this.authService.getCurrentUser().uid).then(user => {
+          this.userService.getUser(this.currentUser.id.toString()).then(user => {
             this.currentUser = Object.assign(new User, user.data());
           })
         });
@@ -61,11 +58,14 @@ export class HomePage {
   }
 
   removeFromWaitList() {
-    let userId = this.authService.getCurrentUser().uid
-    this.userService.deleteDocument('listaDeEspera', userId);
-    this.userService.update('usuarios', userId, { 'status': 'sinAtender' }).then(() => {
+    this.userService.deleteDocument('listaDeEspera', this.currentUser.id.toString());
+    this.userService.update('usuarios', this.currentUser.id.toString(), { 'status': 'sinAtender' }).then(() => {
       this.notificationService.presentToast("Eliminado de la Lista de Espera", "warning", "top");
       this.router.navigateByUrl("/login");
     })
+  }
+
+  logout(){
+    this.authService.logOut();
   }
 }
