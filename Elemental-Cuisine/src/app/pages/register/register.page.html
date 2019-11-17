@@ -1,8 +1,12 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Registro de {{object}}</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <form class="form" *ngIf="object == 'cliente'">
   <ion-item>
     <ion-label position="floating">Nombre</ion-label>
@@ -109,4 +113,3 @@
 <ion-button color="medium" (click)="abrirCamara()">Sacar Foto</ion-button>
 <ion-button color="medium" (click)="scan()">Escanear DNI</ion-button>
 <ion-button color="medium" (click)="alta()">Registrar</ion-button>
-<ion-button color="medium" routerLink="/login">Volver al Login</ion-button>

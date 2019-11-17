@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
       Menú Principal
       <ion-icon routerLink="/login" class="ion-float-right" name="exit"></ion-icon>
@@ -8,33 +8,97 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="currentUser?.profile == 'dueño'">
-  <ion-button (click)="showAlert()">
-    <ion-icon slot="start" name="star"></ion-icon>
-    Hola
-  </ion-button>
+<ion-content class="home-background">
+  <div class="home-background">
+    <img class="brand-icon" src="assets/images/brand.png" alt="">
 
-  <ion-button routerLink="/listado">
-    Listado
-  </ion-button>
-</ion-content>
+    <section class="ion-text-center ion-margin-bottom" *ngIf="currentUser?.profile == 'dueño'">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-card (click)="showAlert()" class="ion-text-center ion-padding" color="dark">
+              <ion-icon name="star"></ion-icon>
+              <h2>Hola</h2>
+            </ion-card>
+          </ion-col>
+          <ion-col col-6>
+            <ion-card routerLink="/listado" class="ion-text-center ion-padding" color="dark">
+              <ion-icon name="list"></ion-icon>
+              <h2>Listado</h2>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            <ion-card (click)="showAlert()" class="ion-text-center ion-padding" color="dark">
+              <ion-icon name="star"></ion-icon>
+              <h2>Hola</h2>
+            </ion-card>
+          </ion-col>
+          <ion-col col-6>
+            <ion-card routerLink="/listado" class="ion-text-center ion-padding" color="dark">
+              <ion-icon name="list"></ion-icon>
+              <h2>Listado</h2>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            <ion-card (click)="showAlert()" class="ion-text-center ion-padding" color="dark">
+              <ion-icon name="star"></ion-icon>
+              <h2>Hola</h2>
+            </ion-card>
+          </ion-col>
+          <ion-col col-6>
+            <ion-card routerLink="/listado" class="ion-text-center ion-padding" color="dark">
+              <ion-icon name="list"></ion-icon>
+              <h2>Listado</h2>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </section>
 
-<ion-content *ngIf="currentUser?.profile == 'cliente'">
-  <ion-button (click)="addToWaitList()"  *ngIf="(currentUser?.status == undefined || currentUser?.status == 'sinAtender')">
-    <ion-icon slot="start" class="list" name="list"></ion-icon>
-    Lista de Espera
-  </ion-button>
-  <ion-button (click)="removeFromWaitList()"  *ngIf="currentUser?.status == 'enEspera'">
-    Abandonar Lista de Espera
-  </ion-button>
-  <ion-button>
-    Encuestas
-  </ion-button>
-</ion-content>
+    <section class="ion-text-center ion-margin-bottom" *ngIf="currentUser?.profile == 'cliente'">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-card (click)="addToWaitList()"
+              *ngIf="(currentUser?.status == undefined || currentUser?.status == 'sinAtender')"
+              class="ion-text-center ion-padding" color="danger">
+              <ion-icon name="list"></ion-icon>
+              <h2 class="long-name">Lista de Espera</h2>
+            </ion-card>
+          </ion-col>
+          <ion-col col-6>
+            <ion-card (click)="removeFromWaitList()" *ngIf="currentUser?.status == 'enEspera'"
+              class="ion-text-center ion-padding" color="danger">
+              <ion-icon name="list"></ion-icon>
+              <h2 class="long-name">Abandonar Lista de Espera</h2>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </section>
 
-<ion-content *ngIf="currentUser?.profile == 'mozo'">
-  <ion-button routerLink="/lista-de-espera">
-    <ion-icon slot="start" class="list" name="list"></ion-icon>
-    Lista de Espera
-  </ion-button>
+    <section class="ion-text-center ion-margin-bottom" *ngIf="currentUser?.profile == 'mozo'">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-card routerLink="/lista-de-espera" class="ion-text-center ion-padding" color="danger">
+              <ion-icon name="list"></ion-icon>
+              <h2 class="long-name">Lista de Espera</h2>
+            </ion-card>
+          </ion-col>
+          <ion-col col-6>
+            <ion-card routerLink="/lista-de-espera" class="ion-text-center ion-padding" color="danger">
+              <ion-icon name="list"></ion-icon>
+              <h2 class="long-name">Lista de Espera</h2>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </section>
+
+  </div>
 </ion-content>
