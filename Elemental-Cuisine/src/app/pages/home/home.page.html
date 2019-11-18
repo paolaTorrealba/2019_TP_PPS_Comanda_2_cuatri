@@ -1,10 +1,14 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-title>
-      Menú Principal
-      <ion-icon (click)="logout()" class="ion-float-right" name="exit"></ion-icon>
-      <ion-icon routerLink="/configuracion" class="ion-float-right" name="settings"></ion-icon>
-    </ion-title>
+      <ion-buttons slot="primary">
+        <ion-button  routerLink="/configuracion">
+          <ion-icon size="large" name="settings"></ion-icon>
+        </ion-button>
+        <ion-button (click)="logout()">
+          <ion-icon size="large" name="exit"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    <ion-title>Menú Principal</ion-title>
   </ion-toolbar>
 </ion-header>
 
