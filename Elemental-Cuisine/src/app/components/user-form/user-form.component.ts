@@ -39,6 +39,7 @@ export class UserFormComponent implements OnInit {
       }
       else{
         this.notificationService.presentToast("Empleado creado", "success", "top");
+        this.router.navigateByUrl('/listado/usuarios');
       }
     });
   }  

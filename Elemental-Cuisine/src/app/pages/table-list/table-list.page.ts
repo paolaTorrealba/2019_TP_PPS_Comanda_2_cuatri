@@ -16,8 +16,10 @@ export class TableListPage implements OnInit {
   ) { 
     this.tableService.getAllTables('mesas').subscribe(tables => {
       this.tables = new Array<Table>();
-      tables.forEach((table:Table) => {
-        this.tables.push(table);
+      tables.forEach(document => {
+        const table = document.payload.doc.data() as Table;
+        table.id = document.payload.doc.id;
+        this.tables.push(table); 
       })
     });
   }
@@ -26,7 +28,7 @@ export class TableListPage implements OnInit {
   }
 
   deleteTable(table){
-
+    this.tableService.deleteTable(table.id);
   }
 
   modifyTable(table){

@@ -4,6 +4,7 @@ import { CameraService } from 'src/app/services/camera.service';
 import { TableService } from 'src/app/services/table.service';
 import { QrscannerService } from 'src/app/services/qrscanner.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-form',
@@ -18,7 +19,8 @@ export class TableFormComponent implements OnInit {
     private cameraService: CameraService,
     private tableService: TableService,
     private qrscannerService: QrscannerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) { 
     this.table = new Table();
   }
@@ -28,6 +30,7 @@ export class TableFormComponent implements OnInit {
   register(){ 
     this.tableService.saveTable(this.table).then(() => {
       this.notificationService.presentToast("Mesa creada", "success", "top");
+      this.router.navigateByUrl('/listado/mesas');
     });
   }  
 

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFirestore, DocumentChangeAction } from "@angular/fire/firestore";
 import { AuthService } from './auth.service';
 import { DataService } from './data.service';
+import { User } from '../classes/user';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +32,7 @@ export class UserService {
     return this.db.collection('usuarios').doc(userId).get().toPromise();
   }
 
-  getAllUsers(collection){
+  getAllUsers(collection):Observable<DocumentChangeAction<User>[]>{
     return this.dataService.getAll(collection);
   }
 
