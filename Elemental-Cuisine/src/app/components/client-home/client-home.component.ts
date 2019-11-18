@@ -59,15 +59,4 @@ export class ClientHomeComponent implements OnInit {
     this.authService.logOut();
   }
 
-  delivery(){
-
-  }
-
-  showPolls(){
-
-  }
-
-  book(){
-    
-  }
 }
