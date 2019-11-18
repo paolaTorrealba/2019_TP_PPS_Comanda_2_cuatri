@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/classes/user';
 import { QrscannerService } from 'src/app/services/qrscanner.service';
 import { CameraService } from 'src/app/services/camera.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-user-form',
@@ -19,7 +20,8 @@ export class UserFormComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private cameraService: CameraService,
-    private qrscannerService: QrscannerService
+    private qrscannerService: QrscannerService,
+    private notificationService: NotificationService
   ) { 
     this.user = new User();
   }
@@ -32,13 +34,18 @@ export class UserFormComponent implements OnInit {
       this.user.status = "sinAtender";
     }
     this.userService.saveUser(this.user).then(response =>{
-      //agregar un alert o popup
-      this.router.navigate(['/home']);
+      if(this.isClient){
+        this.router.navigate(['/home']);
+      }
+      else{
+        this.notificationService.presentToast("Empleado creado", "success", "top");
+      }
     });
   }  
 
   takePhoto(){
-    this.cameraService.takePhoto();
+    //Cambiar nombre de la foto (segundo parametro)
+    this.cameraService.takePhoto('clientes', Date.now());
   }
 
   scan(){

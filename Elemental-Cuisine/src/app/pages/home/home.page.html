@@ -15,7 +15,6 @@
 <ion-content class="home-background">
   <div class="home-background">
     <img class="brand-icon" src="assets/images/brand.png" alt="">
-
     <section class="ion-text-center ion-margin-bottom" *ngIf="currentUser?.profile == 'dueño'">
       <ion-grid>
         <ion-row>
@@ -63,33 +62,7 @@
       </ion-grid>
     </section>
 
-    <section class="ion-text-center ion-margin-bottom" *ngIf="currentUser?.profile == 'cliente'">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <ion-card (click)="addToWaitList()"
-              *ngIf="(currentUser?.status == undefined || currentUser?.status == 'sinAtender')"
-              class="ion-text-center ion-padding" color="danger">
-              <ion-icon name="list"></ion-icon>
-              <h2 class="long-name">Lista de Espera</h2>
-            </ion-card>
-          </ion-col>
-          <ion-col col-6>
-            <ion-card (click)="removeFromWaitList()" *ngIf="currentUser?.status == 'enEspera'"
-              class="ion-text-center ion-padding" color="danger">
-              <ion-icon name="list"></ion-icon>
-              <h2 class="long-name">Abandonar Lista de Espera</h2>
-            </ion-card>
-          </ion-col>
-          <ion-col col-6>
-            <ion-card class="ion-text-center ion-padding" color="danger">
-              <ion-icon name="list"></ion-icon>
-              <h2 class="long-name">Encuestas</h2>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </section>
+    <app-client-home *ngIf="currentUser?.profile == 'cliente'"></app-client-home>
 
     <section class="ion-text-center ion-margin-bottom" *ngIf="currentUser?.profile == 'mozo'">
       <ion-grid>

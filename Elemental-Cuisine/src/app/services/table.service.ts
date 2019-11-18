@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+import { DataService } from './data.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TableService {
+
+  constructor(
+    private dataService: DataService
+  ) { }
+
+  saveTable(table){
+    return this.dataService.add('mesas', table);
+  }
+
+  getAllTables(collection){
+    return this.dataService.getAll(collection);
+  }
+}

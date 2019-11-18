@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Table } from 'src/app/classes/table';
+import { CameraService } from 'src/app/services/camera.service';
+import { TableService } from 'src/app/services/table.service';
+import { QrscannerService } from 'src/app/services/qrscanner.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-table-form',
@@ -7,8 +12,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableFormComponent implements OnInit {
 
-  constructor() { }
+  private table:Table;
+
+  constructor(
+    private cameraService: CameraService,
+    private tableService: TableService,
+    private qrscannerService: QrscannerService,
+    private notificationService: NotificationService
+  ) { 
+    this.table = new Table();
+  }
 
   ngOnInit() {}
+
+  register(){ 
+    this.tableService.saveTable(this.table).then(() => {
+      this.notificationService.presentToast("Mesa creada", "success", "top");
+    });
+  }  
+
+  takePhoto(){
+    //Cambiar nombre de la foto (segundo parametro)
+    this.cameraService.takePhoto('mesas', Date.now());
+  }
+
+  scan(){
+    let data = this.qrscannerService.scanDni();
+    alert(data);
+  }
 
 }

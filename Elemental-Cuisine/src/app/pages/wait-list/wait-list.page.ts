@@ -16,7 +16,7 @@ export class WaitListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getAll('listaDeEspera').subscribe(clients => {
+    this.userService.getAllUsers('listaDeEspera').subscribe(clients => {
       this.users = new Array<Object>();
       clients.forEach(user => {
         this.users.push(user);
