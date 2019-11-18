@@ -16,8 +16,10 @@ export class ProductListPage implements OnInit {
   ) { 
     this.productService.getAllProducts('productos').subscribe(products => {
       this.products = new Array<Product>();
-      products.forEach((product:Product) => {
-        this.products.push(product);
+      products.forEach(document => {
+        const product = document.payload.doc.data() as Product;
+        product.id = document.payload.doc.id;
+        this.products.push(product); 
       })
     });
   }
@@ -30,7 +32,7 @@ export class ProductListPage implements OnInit {
   }*/
 
   deleteProduct(product){
-
+    this.productService.deleteProduct(product.id);
   }
 
   modifyProduct(product){

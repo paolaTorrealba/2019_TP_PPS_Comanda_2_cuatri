@@ -17,4 +17,8 @@ export class ProductService {
   getAllProducts(collection){
     return this.dataService.getAll(collection);
   }
+
+  deleteProduct(productId){
+    this.dataService.deleteDocument('productos', productId);
+  }
 }

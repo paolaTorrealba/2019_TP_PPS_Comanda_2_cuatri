@@ -17,4 +17,8 @@ export class TableService {
   getAllTables(collection){
     return this.dataService.getAll(collection);
   }
+
+  deleteTable(tableId){
+    this.dataService.deleteDocument('mesas', tableId);
+  }
 }

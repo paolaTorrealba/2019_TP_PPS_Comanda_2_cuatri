@@ -4,6 +4,7 @@ import { CameraService } from 'src/app/services/camera.service';
 import { ProductService } from 'src/app/services/product.service';
 import { QrscannerService } from 'src/app/services/qrscanner.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -18,7 +19,8 @@ export class ProductFormComponent implements OnInit {
     private cameraService: CameraService,
     private productService: ProductService,
     private qrscannerService: QrscannerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) { 
     this.product = new Product();
   }
@@ -28,6 +30,7 @@ export class ProductFormComponent implements OnInit {
   register(){ 
     this.productService.saveProduct(this.product).then(() => {
       this.notificationService.presentToast("Producto creado", "success", "top");
+      this.router.navigateByUrl('/listado/productos');
     });
   }  
 

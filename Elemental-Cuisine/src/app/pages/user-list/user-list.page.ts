@@ -18,9 +18,12 @@ export class UserListPage implements OnInit {
   ngOnInit() {
     this.userService.getAllUsers('usuarios').subscribe(users => {
       this.users = new Array<User>();
-      users.forEach((user:User) => {
-        if(user.profile != null && user.profile != "cliente")
+      users.forEach(document => {
+        const user = document.payload.doc.data() as User;
+        if(user.profile != null && user.profile != "cliente"){
+          user.id = document.payload.doc.id;
           this.users.push(user);
+        } 
       })
     });
   }
