@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/classes/user';
+import { QrscannerService } from 'src/app/services/qrscanner.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { TableService } from 'src/app/services/table.service';
+import { Table } from 'src/app/classes/table';
 
 @Component({
   selector: 'app-wait-list',
@@ -12,21 +15,36 @@ export class WaitListPage implements OnInit {
   users:Array<Object>;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private qrscannerService: QrscannerService,
+    private notificationService: NotificationService,
+    private tableService: TableService
   ) { }
 
   ngOnInit() {
     this.userService.getAllUsers('listaDeEspera').subscribe(clients => {
       this.users = new Array<Object>();
-      clients.forEach(user => {
-        this.users.push(user);
+      clients.forEach(document => {
+        const user = document.payload.doc.data();
+        user.id = document.payload.doc.id;
+        this.users.push(user); 
       })
       this.users.sort((a:any,b:any) => (a.date > b.date) ? -1 : 1);
     });
   }
 
   takeOrder(){
-    console.log("Orden tomada");
+    this.qrscannerService.scanQr().then(response => {
+      this.tableService.getTableById(response).then(table => {
+        let currentTable = Object.assign(new Table, table.data());
+        if (currentTable.isBusy) {
+          this.notificationService.presentToast("Mesa Ocupada", "danger", "top");
+        }
+        else{
+
+        }
+      });
+    });
   }
 
 }

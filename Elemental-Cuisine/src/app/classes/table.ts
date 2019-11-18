@@ -4,4 +4,5 @@ export class Table {
     dinerQuantity:number;
     type:string;
     photo:string;
+    isBusy:boolean;
 }

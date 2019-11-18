@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SmartAudioService } from 'src/app/services/smart-audio.service';
 
 @Component({
   selector: 'app-configuration',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigurationPage implements OnInit {
 
-  private sounds:boolean = true;
+  private isActive:boolean = true;;
 
-  constructor() { }
+  constructor(
+    private smartAudioService: SmartAudioService
+  ) { }
 
   ngOnInit() {
+  }
+
+  activateSounds(){
+    console.log(this.isActive);
+    this.smartAudioService.activateSounds(this.isActive);
   }
 
 }

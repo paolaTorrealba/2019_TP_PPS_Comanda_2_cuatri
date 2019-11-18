@@ -26,7 +26,7 @@ export class ClientHomeComponent implements OnInit {
       if (isNullOrUndefined(user)) {
         this.router.navigateByUrl("/login");
       }
-      this.userService.getUser(user.uid).then(userData => {
+      this.userService.getUserById(user.uid).then(userData => {
         this.currentUser = Object.assign(new User, userData.data());
       })
   }
@@ -36,10 +36,10 @@ export class ClientHomeComponent implements OnInit {
   addToWaitList() {
     this.qrscannerService.scanQr().then(response => {
       if (response == 'listaDeEspera') {
-        this.userService.setDocument('listaDeEspera', this.currentUser.id.toString(), { 'date' : Date.now(), 'name': this.currentUser.name });
+        this.userService.setDocument('listaDeEspera', this.currentUser.id.toString(), { 'date' : Date.now(), 'name': this.currentUser.name + " " + this.currentUser.surname, 'dni' : this.currentUser.dni });
         this.userService.update('usuarios', this.currentUser.id, { 'status': 'enEspera' }).then(() => {
           this.notificationService.presentToast("Agregado a lista de espera", "success", "top");
-          this.userService.getUser(this.currentUser.id.toString()).then(user => {
+          this.userService.getUserById(this.currentUser.id.toString()).then(user => {
             this.currentUser = Object.assign(new User, user.data());
           })
         });
@@ -51,7 +51,6 @@ export class ClientHomeComponent implements OnInit {
     this.userService.deleteDocument('listaDeEspera', this.currentUser.id.toString());
     this.userService.update('usuarios', this.currentUser.id, { 'status': 'sinAtender' }).then(() => {
       this.notificationService.presentToast("Eliminado de la Lista de Espera", "warning", "top");
-      this.router.navigateByUrl("/login");
     })
   }
 
