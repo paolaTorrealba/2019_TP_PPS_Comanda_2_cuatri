@@ -52,6 +52,8 @@ export class LoginPage implements OnInit {
     this.defaultUsers.push({"email":"admin@admin.com", "password":"123456"});
     this.defaultUsers.push({"email":"cliente@cliente.com", "password":"123456"});
     this.defaultUsers.push({"email":"mozo@mozo.com", "password":"123456"});
+    this.defaultUsers.push({"email":"bartender@bartender.com", "password":"123456"});
+    this.defaultUsers.push({"email":"cocinero@cocinero.com", "password":"123456"});
   }
 
   setDefaultUser(){

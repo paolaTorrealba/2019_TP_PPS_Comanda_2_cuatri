@@ -15,13 +15,11 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let product of products">
+    <ion-item *ngFor="let product of products" (click)="showDetails($event)">
       <ion-icon name="pizza"></ion-icon>
       <ion-label>{{product.name}}</ion-label>
-      <ion-button color="medium" (click)="modifyProduct(product)"><ion-icon name="create"></ion-icon></ion-button>
-      <ion-button color="danger" (click)="deleteProduct(product)"><ion-icon name="trash"></ion-icon></ion-button>
+      <ion-button color="medium" (click)="modifyProduct($event, product)"><ion-icon name="create"></ion-icon></ion-button>
+      <ion-button color="danger" (click)="deleteProduct($event, product.id)"><ion-icon name="trash"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
-
-<!--ion-button color="medium" routerLink="/editar" (click)="editarProducto($event)"-->

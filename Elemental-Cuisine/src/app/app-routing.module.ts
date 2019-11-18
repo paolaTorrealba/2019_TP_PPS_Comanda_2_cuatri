@@ -8,9 +8,11 @@ const routes: Routes = [
   { path: 'listado', loadChildren: './pages/lists/lists.module#ListsPageModule' },
   { path: 'registro/:object', loadChildren: './pages/register/register.module#RegisterPageModule' },
   //{ path: 'modificar/:object/:id', loadChildren: './pages/add/add.module#AddPageModule' },
-  //{ path: 'borrar/:object/:id', loadChildren: './pages/add/add.module#AddPageModule' },
   { path: 'configuracion', loadChildren: './pages/configuration/configuration.module#ConfigurationPageModule' },
-  { path: 'lista-de-espera', loadChildren: './pages/wait-list/wait-list.module#WaitListPageModule' }
+  { path: 'lista-de-espera', loadChildren: './pages/wait-list/wait-list.module#WaitListPageModule' },
+  { path: 'reservar', loadChildren: './pages/book/book.module#BookPageModule' },
+  { path: 'delivery', loadChildren: './pages/delivery/delivery.module#DeliveryPageModule' },
+  { path: 'encuestas', loadChildren: './pages/poll/poll.module#PollPageModule' }
 
 ]
 

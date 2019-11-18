@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { ClientHomeComponent } from 'src/app/components/client-home/client-home.component';
+import { WaiterHomeComponent } from 'src/app/components/waiter-home/waiter-home.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { ClientHomeComponent } from 'src/app/components/client-home/client-home.
       }
     ])
   ],
-  declarations: [HomePage, ClientHomeComponent]
+  declarations: [HomePage, ClientHomeComponent, WaiterHomeComponent]
 })
 export class HomePageModule {}
