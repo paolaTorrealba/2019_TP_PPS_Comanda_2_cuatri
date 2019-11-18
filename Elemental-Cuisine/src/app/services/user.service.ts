@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AuthService } from './auth.service';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class UserService {
 
   constructor(
     private db: AngularFirestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataService: DataService
   ){}
 
   saveUser(user) {
@@ -28,20 +30,15 @@ export class UserService {
     return this.db.collection('usuarios').doc(userId).get().toPromise();
   }
 
-  getAll(collection){
-    return this.db.collection(collection).valueChanges();
+  getAllUsers(collection){
+    return this.dataService.getAll(collection);
   }
 
-  getAllDocuments(collection){
-    return this.db.collection(collection).get();
+  update(collection: string, id:string, object:any) {
+    return this.dataService.update(collection, id, object);
   }
-
-  update(collection: string, id:string, objeto:any) {
-    return this.db.doc<any>(`${collection}/${id}`).update(objeto);
-  }
-
 
   deleteDocument(collection: string, id: string) {
-    return this.db.doc<any>(`${collection}/${id}`).delete();
-}
+    return this.dataService.deleteDocument(collection, id);
+  }
 }

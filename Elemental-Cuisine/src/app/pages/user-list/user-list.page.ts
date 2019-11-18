@@ -16,7 +16,7 @@ export class UserListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getAll('usuarios').subscribe(users => {
+    this.userService.getAllUsers('usuarios').subscribe(users => {
       this.users = new Array<User>();
       users.forEach((user:User) => {
         if(user.profile != null && user.profile != "cliente")

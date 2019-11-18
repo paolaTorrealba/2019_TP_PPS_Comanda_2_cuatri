@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Table } from 'src/app/classes/table';
+import { TableService } from 'src/app/services/table.service';
 
 @Component({
   selector: 'app-table-list',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableListPage implements OnInit {
 
-  constructor() { }
+  private tables: Array<Table>;
+
+  constructor(
+    private tableService: TableService
+  ) { 
+    this.tableService.getAllTables('mesas').subscribe(tables => {
+      this.tables = new Array<Table>();
+      tables.forEach((table:Table) => {
+        this.tables.push(table);
+      })
+    });
+  }
 
   ngOnInit() {
+  }
+
+  deleteTable(table){
+
+  }
+
+  modifyTable(table){
+    
   }
 
 }
