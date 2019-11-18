@@ -7,109 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
-<form class="form" *ngIf="object == 'cliente'">
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input type="text" required [(ngModel)]="user.name" name="name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Apellido</ion-label>
-    <ion-input type="text" required [(ngModel)]="user.surname" name="surname"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">DNI</ion-label>
-    <ion-input type="number" minlength="8" maxlength="8" required [(ngModel)]="user.dni" name="dni"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">CUIL</ion-label>
-    <ion-input type="number" minlength="11" maxlength="11" required [(ngModel)]="user.cuil" name="cuil"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Correo Electrónico</ion-label>
-    <ion-input type="email" required [(ngModel)]="user.email" name="email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Clave</ion-label>
-    <ion-input type="password" minlength="6" required [(ngModel)]="user.password" name="password"></ion-input>
-  </ion-item>
-</form>
+<ion-content>
+  <app-client-form *ngIf="object == 'cliente'"></app-client-form>
 
+  <app-employee-form *ngIf="object == 'usuario'"></app-employee-form>
 
-<form class="form" *ngIf="object == 'usuario'">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" required [(ngModel)]="user.name" name="name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" required [(ngModel)]="user.surname" name="surname"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">DNI</ion-label>
-      <ion-input type="number" minlength="8" maxlength="8" required [(ngModel)]="user.dni" name="dni"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">CUIL</ion-label>
-      <ion-input type="number" minlength="11" maxlength="11" required [(ngModel)]="user.cuil" name="cuil"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Correo Electrónico</ion-label>
-      <ion-input type="email" required [(ngModel)]="user.email" name="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Clave</ion-label>
-      <ion-input type="password" minlength="6" required [(ngModel)]="user.password" name="password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Perfil</ion-label>
-      <ion-select [(ngModel)]="user.profile" name="profile" placeholder="Seleccione perfil" required>
-        <ion-select-option value="mozo">Mozo</ion-select-option>
-        <ion-select-option value="cocinero">Cocinero</ion-select-option>
-        <ion-select-option value="bartender">Bartender</ion-select-option>
-        <ion-select-option value="dueño">Dueño</ion-select-option>
-        <ion-select-option value="supervisor">Supervisor</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </form>
+  <app-table-form *ngIf="object == 'mesa'"></app-table-form>
 
-<form *ngIf="object == 'mesa'" class="form">
-  <ion-list lines="full" class="ion-no-margin ion-no-padding">
-    <ion-item class="group">
-      <ion-label for="user" class="label" position="floating">Número de mesa</ion-label>
-      <ion-input type="text" class="input" required></ion-input>
-    </ion-item>
-    <ion-item class="group">
-      <ion-label for="pass" class="label" position="floating">Cantidad de Comensales</ion-label>
-      <ion-input type="password" class="input" data-type="password" required></ion-input>
-    </ion-item>
-    <ion-item class="group">
-      <ion-label for="pass" class="label" position="floating">Tipo</ion-label>
-      <ion-input type="password" class="input" data-type="password" required></ion-input>
-    </ion-item>
-  </ion-list>
-</form>
-
-<form *ngIf="object == 'producto'" class="form">
-  <ion-list lines="full" class="ion-no-margin ion-no-padding">
-    <ion-item class="group">
-      <ion-label for="user" class="label" position="floating">Nombre</ion-label>
-      <ion-input type="text" class="input" required></ion-input>
-    </ion-item>
-    <ion-item class="group">
-      <ion-label for="pass" class="label" position="floating">Descripción</ion-label>
-      <ion-input type="password" class="input" data-type="password" required></ion-input>
-    </ion-item>
-    <ion-item class="group">
-      <ion-label for="pass" class="label" position="floating">Tiempo Promedio de Elaboración</ion-label>
-      <ion-input type="password" class="input" data-type="password" required></ion-input>
-    </ion-item>
-    <ion-item class="group">
-      <ion-label for="pass" class="label" position="floating">Precio</ion-label>
-      <ion-input type="password" class="input" data-type="password" required></ion-input>
-    </ion-item>
-  </ion-list>
-</form>
-
-<ion-button color="medium" (click)="abrirCamara()">Sacar Foto</ion-button>
-<ion-button color="medium" (click)="scan()">Escanear DNI</ion-button>
-<ion-button color="medium" (click)="alta()">Registrar</ion-button>
+  <app-product-form *ngIf="object == 'producto'"></app-product-form>
+</ion-content>
