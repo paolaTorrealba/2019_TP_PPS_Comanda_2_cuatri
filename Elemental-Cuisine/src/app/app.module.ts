@@ -13,6 +13,8 @@ import { firebaseConfig } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestore } from "@angular/fire/firestore";
+import { SmartAudioService } from './services/smart-audio.service';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 
 
@@ -32,6 +34,8 @@ import { AngularFirestore } from "@angular/fire/firestore";
     BarcodeScanner,
     SplashScreen,
     Camera,
+    SmartAudioService,
+    NativeAudio,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

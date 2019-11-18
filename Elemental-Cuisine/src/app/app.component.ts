@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { timer } from 'rxjs';
+import { SmartAudioService } from './services/smart-audio.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
 
   constructor(
     private platform: Platform,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private smartAudioService: SmartAudioService
   ) {
     this.initializeApp();
   }
@@ -23,6 +25,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+      //this.smartAudioService.preload('horizontal', 'assets/sounds/horizontal.mp3');
       timer(5000).subscribe( () => {
         this.showSplash = false;
       });

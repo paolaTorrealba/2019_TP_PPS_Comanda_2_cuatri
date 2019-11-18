@@ -26,4 +26,8 @@ export class DataService {
   add(collection, object){
     return this.db.collection(collection).add(Object.assign({}, object));
   }
+
+  getOne(collection, id){
+    return this.db.collection(collection).doc(id).get().toPromise();
+  }
 }

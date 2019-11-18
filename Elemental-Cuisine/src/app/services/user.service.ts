@@ -28,8 +28,8 @@ export class UserService {
     this.db.collection(collection).doc(id).set(object);
   }
 
-  getUser(userId){
-    return this.db.collection('usuarios').doc(userId).get().toPromise();
+  getUserById(userId){
+    return this.dataService.getOne('usuarios',userId);
   }
 
   getAllUsers(collection):Observable<DocumentChangeAction<User>[]>{

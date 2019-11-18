@@ -24,7 +24,7 @@ export class HomePage {
       if (isNullOrUndefined(user)) {
         this.router.navigateByUrl("/login");
       }
-      this.userService.getUser(user.uid).then(userData => {
+      this.userService.getUserById(user.uid).then(userData => {
         this.currentUser = Object.assign(new User, userData.data());
       })
   }

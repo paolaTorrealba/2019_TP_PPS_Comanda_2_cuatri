@@ -21,4 +21,8 @@ export class TableService {
   deleteTable(tableId){
     this.dataService.deleteDocument('mesas', tableId);
   }
+
+  getTableById(tableId){
+    return this.dataService.getOne('mesas', tableId);
+  }
 }

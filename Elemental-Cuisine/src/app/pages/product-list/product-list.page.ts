@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/classes/product';
-import { PopoverController } from '@ionic/angular';
+//import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +14,7 @@ export class ProductListPage implements OnInit {
 
   constructor(
     private productService: ProductService,
-    public popoverController: PopoverController
+    //public popoverController: PopoverController
   ) { 
     this.productService.getAllProducts('productos').subscribe(products => {
       this.products = new Array<Product>();
@@ -38,12 +38,12 @@ export class ProductListPage implements OnInit {
     event.stopPropagation();
   }
 
-  async showDetails(ev){
+  /*async showDetails(ev){
     const popover = await this.popoverController.create({
       component: "",
       event: ev,
       translucent: true
     });
     return await popover.present();
-  }
+  }*/
 }
