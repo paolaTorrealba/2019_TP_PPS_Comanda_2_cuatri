@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Encuestas de Clientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="poll-background">
+  <div class="poll-background">
+    <img class="brand-icon" src="assets/images/brand.png" alt="">
+    <section class="ion-text-center ion-margin-bottom" *ngIf="currentUser?.profile == 'dueño'">
+      <ion-grid>
+         listado de encuestas por nombre de cliente
+      </ion-grid>
+    </section>   
+
+  </div>
+</ion-content>
+
