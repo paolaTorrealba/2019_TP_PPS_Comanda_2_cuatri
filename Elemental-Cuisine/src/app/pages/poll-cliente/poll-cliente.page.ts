@@ -8,7 +8,7 @@ import { User } from 'src/app/classes/user';
 import { Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { NotificationService } from 'src/app/services/notification.service';
-import { Poll } from 'src/app/classes/poll';
+import { PollClient } from 'src/app/classes/pollClient';
 
 @Component({
   selector: 'app-poll-cliente',
@@ -17,30 +17,22 @@ import { Poll } from 'src/app/classes/poll';
 })
 export class PollClientePage implements OnInit {
 
-  currentUser: User;
-  private poll:Poll;
+  private currentUser: User;
+  private pollClient:PollClient;
+  public image: string;
+  public  date: any;
+  public answer1Model: string="mujer";
+  public answer2Model: string="Internet";
+  public answer3Model: string="Muy Buena";
+  public answer4Model: string="si";
+  public answer5Model: string="Calidad";
+  public answer6Model: string="buena";
+  public commentaryModel:string= "";
 
-  // firebase = firebase;
-  foto: string;
-  fecha: string;
+  public email: string ="";
+  public name:string="";
 
-
-  encuestasClientes;
-  encuestaClienteActual;
-  encuestaCliente;
-  public yaExiste=false;
-  public opinion = 3;  
-
-  public respuesta1: string="mujer";
-  public respuesta2: string="Internet";
-  public respuesta3: string="Muy Buena";
-  public respuesta4: string="si";
-  public respuesta5: string="Calidad";
-  public respuesta6: string="buena";
-
-  public correo: string ="";
-  public comentario: string = "";
-  public nombre:string="";
+  private opinion=3;
    
   constructor(private cameraService: CameraService, 
               private pollService: PollService,
@@ -49,15 +41,16 @@ export class PollClientePage implements OnInit {
               private userService: UserService,
               private router: Router ) {    
       
-      this.poll = new Poll();
-      console.log("poll", this.poll)
-      this.obtenerUsuario();
-      // this.obtenerEncuestas();  
-      
+      this.pollClient = new PollClient();
+      console.log("poll", this.pollClient)
+      this.getUsers();
+      // this.obtenerEncuestas();        
       // this.encuestaExiste();    
    } 
+
   ngOnInit() {}
-  obtenerUsuario(){
+
+  getUsers(){
     let user = this.authService.getCurrentUser();
     if (isNullOrUndefined(user)) {
       this.router.navigateByUrl("/login");
@@ -76,41 +69,32 @@ export class PollClientePage implements OnInit {
      })
     } 
 
-  register(){ 
-      this.pollService.savePollClient(this.poll).then(() => {
-        this.notificationService.presentToast("Encuesta creada", "success", "top");
-        // this.router.navigateByUrl('/listado/encu');
-      });
-    }  
+   
 
-  guardarEncuesta() {    
-    if(this.currentUser.profile == "anonimo"){
-      this.encuestaCliente= {
-        "nombre": this.currentUser.name,      
-        "respuesta1":this.respuesta1,        
-        "respuesta2":this.respuesta2,        
-        "respuesta3":this.respuesta3,       
-        "respuesta4":this.respuesta4,        
-        "respuesta5":this.respuesta5,       
-        "respuesta6":this.respuesta6,
-        "comentario": this.comentario
-      }
+savePoll(){ 
+    
+    if(this.currentUser.profile == "cliente"){   
+      this.pollClient.email= this.currentUser.email    
     }
-    else{
-      this.encuestaCliente= {
-        "nombre": this.currentUser.name,
-        "correo":this.currentUser.email,
-        "respuesta1":this.respuesta1,        
-        "respuesta2":this.respuesta2,        
-        "respuesta3":this.respuesta3,       
-        "respuesta4":this.respuesta4,        
-        "respuesta5":this.respuesta5,       
-        "respuesta6":this.respuesta6,
-        "comentario": this.comentario
-      }
-    }
- 
+    //es anonimo, no guardo el correo  
+    this.pollClient.name= this.currentUser.name,
+    this.pollClient.date=new Date(); 
+    this.pollClient.answer1=this.answer1Model,        
+    this.pollClient.answer2=this.answer2Model,        
+    this.pollClient.answer3=this.answer3Model,       
+    this.pollClient.answer4=this.answer4Model,        
+    this.pollClient.answer5=this.answer5Model,       
+    this.pollClient.answer6=this.answer6Model,
+    this.pollClient.commentary= this.commentaryModel
+
+    this.pollService.savePollClient(this.pollClient).then(() => {
+        this.notificationService.presentToast("Encuesta creada", "success", "top");
+        this.router.navigateByUrl('/home');
+      });
+  
   }
+
+
 
   takePhoto(){    
     this.cameraService.takePhoto('encuestas', Date.now());
@@ -119,7 +103,7 @@ export class PollClientePage implements OnInit {
   
   modificarTextoRange() {
     let arrayAux = ['muy mala','mala','buena','muy buena','excelente'];
-    this.respuesta6= arrayAux[this.opinion - 1];
+    this.answer6Model= arrayAux[this.opinion - 1];
    
   }
   //   if (this.yaExiste){
