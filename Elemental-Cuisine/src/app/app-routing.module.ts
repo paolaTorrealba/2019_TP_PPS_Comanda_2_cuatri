@@ -12,7 +12,16 @@ const routes: Routes = [
   { path: 'lista-de-espera', loadChildren: './pages/wait-list/wait-list.module#WaitListPageModule' },
   { path: 'reservar', loadChildren: './pages/book/book.module#BookPageModule' },
   { path: 'delivery', loadChildren: './pages/delivery/delivery.module#DeliveryPageModule' },
-  { path: 'encuestas', loadChildren: './pages/poll/poll.module#PollPageModule' }
+  { path: 'encuestas', loadChildren: './pages/poll/poll.module#PollPageModule' },
+  { path: 'encuestas-cliente', loadChildren: './pages/poll-client-list/poll-client-list.module#PollClientListPageModule' },
+  { path: 'encuestas-empleado', loadChildren: './pages/poll-employee-list/poll-employee-list.module#PollEmployeeListPageModule' },
+  { path: 'juego-cliente', loadChildren: './pages/play-client/play-client.module#PlayClientPageModule' },
+  { path: 'hacer-encuesta-cliente', loadChildren: './pages/poll-cliente/poll-cliente.module#PollClientePageModule' },
+  { path: 'hacer-encuesta-empleado', loadChildren: './pages/poll-empleoyee/poll-empleoyee.module#PollEmpleoyeePageModule' },
+
+
+  
+
 
 ]
 
