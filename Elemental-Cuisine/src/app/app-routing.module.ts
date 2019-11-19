@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'reservar', loadChildren: './pages/book/book.module#BookPageModule' },
   { path: 'delivery', loadChildren: './pages/delivery/delivery.module#DeliveryPageModule' },
   { path: 'encuestas', loadChildren: './pages/poll/poll.module#PollPageModule' }
-
 ]
 
 @NgModule({
