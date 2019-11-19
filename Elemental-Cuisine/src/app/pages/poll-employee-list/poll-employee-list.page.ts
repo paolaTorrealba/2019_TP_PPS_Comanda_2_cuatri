@@ -4,11 +4,11 @@ import { PollService } from 'src/app/services/poll.service';
 
 
 @Component({
-  selector: 'app-poll-employee',
-  templateUrl: './poll-employee.page.html',
-  styleUrls: ['./poll-employee.page.scss'],
+  selector: 'app-poll-employee-list',
+  templateUrl: './poll-employee-list.page.html',
+  styleUrls: ['./poll-employee-list.page.scss'],
 })
-export class PollEmployeePage implements OnInit {
+export class PollEmployeeListPage implements OnInit {
   private polls: Array<Poll>;
 
   constructor(
