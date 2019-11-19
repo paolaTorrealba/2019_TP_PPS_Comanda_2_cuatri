@@ -11,8 +11,8 @@ import { PollService } from 'src/app/services/poll.service';
 export class PollEmployeeListPage implements OnInit {
   private polls: Array<Poll>;
 
-  constructor(
-    private pollService: PollService) { 
+  constructor(private pollService: PollService) { 
+
     this.pollService.getAllPollsEmployee('encuestas_empleados').subscribe(polls => {
       this.polls = new Array<Poll>();
       console.log(this.polls);
@@ -22,7 +22,7 @@ export class PollEmployeeListPage implements OnInit {
         this.polls.push(poll); 
       })
     });
-    console.log(this.polls);
+
   }
 
   ngOnInit() {
