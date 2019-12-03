@@ -33,6 +33,6 @@ export class UserListPage implements OnInit {
   }
 
   deleteEmployee(user){
-    this.userService.deleteUser(user.id);
+    this.userService.deleteDocument('usuarios', user);
   }
 }
