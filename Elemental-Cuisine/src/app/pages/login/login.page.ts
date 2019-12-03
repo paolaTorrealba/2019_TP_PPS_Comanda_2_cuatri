@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';import { Router } from '@angular/router';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'; import { Router } from '@angular/router';
 import { User } from 'src/app/classes/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +19,11 @@ export class LoginPage implements OnInit {
   user: User;
 
   constructor(
-    private authService: AuthService, 
-    private loadingService: LoadingService,     
-    private formBuilder: FormBuilder
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private userService: UserService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -36,7 +39,7 @@ export class LoginPage implements OnInit {
       ])),
     });
   }
- 
+
   validation_messages = {
     'email': [
       { type: 'required', message: 'El email es requerido.' },
@@ -48,15 +51,15 @@ export class LoginPage implements OnInit {
     ]
   };
 
-  addDefaultUser(){
-    this.defaultUsers.push({"email":"admin@admin.com", "password":"123456"});
-    this.defaultUsers.push({"email":"cliente@cliente.com", "password":"123456"});
-    this.defaultUsers.push({"email":"mozo@mozo.com", "password":"123456"});
-    this.defaultUsers.push({"email":"bartender@bartender.com", "password":"123456"});
-    this.defaultUsers.push({"email":"cocinero@cocinero.com", "password":"123456"});
+  addDefaultUser() {
+    this.defaultUsers.push({ "email": "admin@admin.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "cliente@cliente.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "mozo@mozo.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "bartender@bartender.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "cocinero@cocinero.com", "password": "123456" });
   }
 
-  setDefaultUser(){
+  setDefaultUser() {
     this.onSubmitLogin(this.user);
   }
 
@@ -70,5 +73,41 @@ export class LoginPage implements OnInit {
       .catch(err => {
         this.loadingService.closeLoading("Error", "Verifique usuario y contraseña", 'error');
       });
+  }
+
+  googleSingin() {
+    this.authService.googleSigin().then(googleResponse => {
+      this.userService.getUserById(googleResponse.uid).then(user => {
+
+        if (!user.exists) {
+          var newUser: User = {
+            id: googleResponse.uid,
+            email: googleResponse.email,
+            password: null,
+            profile: "cliente",
+            name: googleResponse.displayName.split(" ")[0],
+            surname: googleResponse.displayName.split(" ")[1],
+            photo: googleResponse.photoURL,
+            status: "sinAtender",
+            dni: null,
+            cuil: null
+          }
+
+          this.userService.saveUser(newUser);
+        }
+
+        this.router.navigate(['/home']);
+      })
+    }).catch(error => {
+      console.log(error);
+    })
+
+    // .then(res => {
+    //   this.userService.getUserById(res.user.uid).then(res => {
+    //     if (!res.exists) {
+    //       this.userService.saveUserWithLogin(res);
+    //     }
+    //   });
+    // })
   }
 }
