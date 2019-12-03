@@ -28,15 +28,11 @@ export class UserListPage implements OnInit {
     });
   }
 
-  addEmployee(){
-
-  }
-
   modifyEmployee(user){
 
   }
 
   deleteEmployee(user){
-    
+    this.userService.deleteUser(user.id);
   }
 }
