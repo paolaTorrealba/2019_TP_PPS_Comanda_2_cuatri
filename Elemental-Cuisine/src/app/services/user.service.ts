@@ -43,7 +43,7 @@ export class UserService {
     return this.dataService.update(collection, id, object);
   }
 
-  deleteDocument(collection: string, id: string) {
-    return this.dataService.deleteDocument(collection, id);
+  deleteDocument(collection:string, user: any) {
+    return this.dataService.deleteDocument(collection, user.id);
   }
 }
