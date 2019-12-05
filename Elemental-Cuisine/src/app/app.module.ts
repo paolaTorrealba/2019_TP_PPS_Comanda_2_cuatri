@@ -16,7 +16,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { SmartAudioService } from './services/smart-audio.service';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
-
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +36,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
     Camera,
     SmartAudioService,
     NativeAudio,
+    Facebook,
     FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

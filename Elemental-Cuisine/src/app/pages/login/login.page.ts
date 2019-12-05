@@ -51,13 +51,13 @@ export class LoginPage implements OnInit {
     ]
   };
 
-  addDefaultUser(){
-    this.defaultUsers.push({"email":"admin@admin.com", "password":"123456"});
-    this.defaultUsers.push({"email":"cliente@cliente.com", "password":"123456"});
-    this.defaultUsers.push({"email":"mozo@mozo.com", "password":"123456"});
-    this.defaultUsers.push({"email":"bartender@bartender.com", "password":"123456"});
-    this.defaultUsers.push({"email":"cocinero@cocinero.com", "password":"123456"});
-    this.defaultUsers.push({"email":"anonimo@anonimo.com", "password":"123456"});
+  addDefaultUser() {
+    this.defaultUsers.push({ "email": "admin@admin.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "cliente@cliente.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "mozo@mozo.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "bartender@bartender.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "cocinero@cocinero.com", "password": "123456" });
+    this.defaultUsers.push({ "email": "anonimo@anonimo.com", "password": "123456" });
   }
 
   setDefaultUser() {
@@ -76,7 +76,7 @@ export class LoginPage implements OnInit {
       });
   }
 
-  googleSingin() {
+  googleLogin() {
     this.authService.googleSigin().then(googleResponse => {
       this.userService.getUserById(googleResponse.uid).then(user => {
 
@@ -101,14 +101,34 @@ export class LoginPage implements OnInit {
       })
     }).catch(error => {
       console.log(error);
-    })
+    });
+  }
 
-    // .then(res => {
-    //   this.userService.getUserById(res.user.uid).then(res => {
-    //     if (!res.exists) {
-    //       this.userService.saveUserWithLogin(res);
-    //     }
-    //   });
-    // })
+  facebookLogin() {
+    this.authService.facebookSigin().then(facebookResponse => {
+      this.userService.getUserById(facebookResponse.uid).then(user => {
+
+        if (!user.exists) {
+          var newUser: User = {
+            id: facebookResponse.uid,
+            email: facebookResponse.email,
+            password: null,
+            profile: "cliente",
+            name: facebookResponse.displayName.split(" ")[0],
+            surname: facebookResponse.displayName.split(" ")[1],
+            photo: facebookResponse.photoURL,
+            status: "sinAtender",
+            dni: null,
+            cuil: null
+          }
+
+          this.userService.saveUser(newUser);
+        }
+
+        this.router.navigate(['/home']);
+      })
+    }).catch(error => {
+      console.log(error);
+    });
   }
 }

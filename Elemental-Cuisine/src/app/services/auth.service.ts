@@ -49,13 +49,6 @@ export class AuthService {
     return credential.user;
   }
 
-  private updateUserData(user) {
-    debugger;
-    // const userRef = this.userService.update('usuarios', user.uid, user).then(() => {
-    //   debugger;
-    // });
-  }
-
   // isLogged() {
   //   this.AFauth.authState.pipe(map(auth => {
   //     if (isNullOrUndefined(auth)) {

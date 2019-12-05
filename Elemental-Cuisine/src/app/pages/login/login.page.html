@@ -30,7 +30,16 @@
         <br>
         <div class="group">
           <ion-button shape="round" type="submit" [disabled]="!form.valid">Ingresar</ion-button>
-          <ion-button shape="round" (click)="googleSingin()">Google</ion-button>
+
+          <ion-button color="danger" shape="round" (click)="googleLogin()">
+            <ion-icon slot="start" name="logo-google"></ion-icon>
+            Google
+          </ion-button>
+
+          <ion-button style="--background:#3b5998" shape="round" (click)="facebookLogin()">
+            <ion-icon slot="start" name="logo-facebook"></ion-icon>
+            Facebook
+          </ion-button>
         </div>
       </form>
       <div class="hr"></div>
