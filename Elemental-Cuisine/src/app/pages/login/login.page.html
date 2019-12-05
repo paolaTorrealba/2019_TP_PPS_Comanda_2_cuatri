@@ -31,15 +31,24 @@
         <div class="group">
           <ion-button shape="round" type="submit" [disabled]="!form.valid">Ingresar</ion-button>
 
-          <ion-button color="danger" shape="round" (click)="googleLogin()">
-            <ion-icon slot="start" name="logo-google"></ion-icon>
-            Google
-          </ion-button>
+          <ion-row>
+            <ion-col col-2></ion-col>
+            <ion-col col-2></ion-col>
+            <ion-col col-2 style="align-self: flex-end;">
+              <ion-fab-button size="small" color="danger" (click)="googleLogin()">
+                <ion-icon name="logo-google"></ion-icon>
+              </ion-fab-button>
+            </ion-col>
 
-          <ion-button style="--background:#3b5998" shape="round" (click)="facebookLogin()">
-            <ion-icon slot="start" name="logo-facebook"></ion-icon>
-            Facebook
-          </ion-button>
+            <ion-col col-2>
+              <ion-fab-button size="small" style="--background:#3b5998" (click)="facebookLogin()">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </ion-fab-button>
+            </ion-col>
+            <ion-col col-2></ion-col>
+            <ion-col col-2></ion-col>
+          </ion-row>
+
         </div>
       </form>
       <div class="hr"></div>
@@ -54,4 +63,5 @@
       </ion-item>
     </div>
   </div>
+
 </ion-content>
