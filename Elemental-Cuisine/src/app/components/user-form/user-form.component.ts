@@ -33,7 +33,7 @@ export class UserFormComponent implements OnInit {
       this.user.profile = "cliente";
       this.user.status = "sinAtender";
     }
-    this.userService.saveUser(this.user).then(response =>{
+    this.userService.saveUserWithLogin(this.user).then(response =>{
       if(this.isClient){
         this.router.navigate(['/home']);
       }

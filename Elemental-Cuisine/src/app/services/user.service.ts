@@ -10,37 +10,40 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class UserService {
 
-
   constructor(
     private db: AngularFirestore,
     private authService: AuthService,
     private dataService: DataService
-  ){}
+  ) { }
 
-  saveUser(user) {
+  saveUserWithLogin(user) {
     return this.authService.createUser(user).then(createdUser => {
       user.id = createdUser.user.uid;
-      this.db.collection('usuarios').doc(user.id).set(Object.assign({}, user));
+      this.saveUser(user);
     })
   }
 
-  setDocument(collection:string, id:string, object:object): void {
+  saveUser(user) {
+    this.db.collection('usuarios').doc(user.id).set(Object.assign({}, user));
+  }
+
+  setDocument(collection: string, id: string, object: object): void {
     this.db.collection(collection).doc(id).set(object);
   }
 
-  getUserById(userId){
-    return this.dataService.getOne('usuarios',userId);
+  getUserById(userId) {
+    return this.dataService.getOne('usuarios', userId);
   }
 
-  getAllUsers(collection):Observable<DocumentChangeAction<User>[]>{
+  getAllUsers(collection): Observable<DocumentChangeAction<User>[]> {
     return this.dataService.getAll(collection);
   }
 
-  update(collection: string, id:string, object:any) {
+  update(collection: string, id: string, object: any) {
     return this.dataService.update(collection, id, object);
   }
 
-  deleteDocument(collection: string, id: string) {
-    return this.dataService.deleteDocument(collection, id);
+  deleteDocument(collection:string, user: any) {
+    return this.dataService.deleteDocument(collection, user.id);
   }
 }
