@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Modificación de  {{object}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <app-modify-user *ngIf="(object == 'cliente' || object == 'usuario' )"></app-modify-user>
+  
+    <app-modify-table *ngIf="object == 'mesa'"></app-modify-table>
+  
+    <app-modify-product *ngIf="object == 'producto'"></app-modify-product> 
+  </ion-content>

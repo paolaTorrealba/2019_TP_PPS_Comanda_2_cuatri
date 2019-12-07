@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Poll } from 'src/app/classes/poll';
+import { PollClient } from 'src/app/classes/pollClient';
 import { PollService } from 'src/app/services/poll.service';
 
 @Component({
@@ -8,15 +8,15 @@ import { PollService } from 'src/app/services/poll.service';
   styleUrls: ['./poll-client-list.page.scss'],
 })
 export class PollClientListPage implements OnInit {
-  private polls: Array<Poll>;
+  private polls: Array<PollClient>;
 
   constructor(
     private pollService: PollService) { 
     this.pollService.getAllPollsClient('encuestas_clientes').subscribe(polls => {
-      this.polls = new Array<Poll>();
+      this.polls = new Array<PollClient>();
       console.log(this.polls);
       polls.forEach(document => {
-        const poll = document.payload.doc.data() as Poll;
+        const poll = document.payload.doc.data() as PollClient;
         poll.id = document.payload.doc.id;
         this.polls.push(poll); 
       })

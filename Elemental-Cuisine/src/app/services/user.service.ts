@@ -39,7 +39,7 @@ export class UserService {
     return this.dataService.getAll(collection);
   }
 
-  update(collection: string, id: string, object: any) {
+  updateUser(collection: string, id: string, object: any) {
     return this.dataService.update(collection, id, object);
   }
 

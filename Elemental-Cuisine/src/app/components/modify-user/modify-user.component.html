@@ -1,0 +1,31 @@
+<!-- <ion-button color="medium" (click)="scan()">Escanear QR</ion-button> -->
+<form class="form"> 
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item class="group">
+        <ion-label for="pass" class="label" position="floating">Cuil</ion-label>
+        <ion-input type="text" class="input" [(ngModel)]="cuilModel" name="cuil" required></ion-input>
+      </ion-item>
+      <ion-item class="group">
+          <ion-label for="pass" class="label" position="floating">Nombre</ion-label>
+          <ion-input type="text" class="input" [(ngModel)]="nameModel" name="name" required></ion-input>
+      </ion-item>
+      <ion-item class="group">
+          <ion-label for="pass" class="label" position="floating">Perfil</ion-label>
+          <ion-input type="text" class="input" [(ngModel)]="profileModel" name="perfil" required></ion-input>
+      </ion-item>
+      <ion-item class="group">
+          <ion-label for="pass" class="label" position="floating">Estado</ion-label>
+          <ion-input type="text" class="input" [(ngModel)]="statusModel" name="status" required></ion-input>
+      </ion-item>
+      <ion-item class="group">
+          <ion-label for="pass" class="label" position="floating">Apellido</ion-label>
+          <ion-input type="text" class="input" [(ngModel)]="surnameModel" name="apellido" required></ion-input>
+      </ion-item>      
+      
+      <ion-thumbnail item-start >
+              <img src={{photoModel}}>
+      </ion-thumbnail>
+    </ion-list>
+    <ion-button color="medium" (click)="takePhoto()">Sacar Foto</ion-button>
+    <ion-button color="medium" (click)="modify()">Actualizar</ion-button>
+  </form>

@@ -12,31 +12,35 @@
     <form class="form">
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
         <ion-item class="group">
-          <ion-label for="pregunta1" class="label" position="floating">{{poll.pregunta1}}</ion-label>
-          <ion-input type="text" class="input" [(ngModel)]="poll.respuesta1" name="number" required></ion-input>
+          <ion-label for="pregunta1" class="label" position="floating">{{pollClient.question1}}</ion-label>
+          <ion-input type="text" class="input" [(ngModel)]="pollClient.answer1Model" name="number" required></ion-input>
         </ion-item>  
         <ion-item class="group">
-            <ion-label for="pregunta2" class="label" position="floating">{{poll.pregunta2}}</ion-label>
-            <ion-input type="text" class="input" [(ngModel)]="poll.respuesta2" name="number" required></ion-input>
+            <ion-label for="pregunta2" class="label" position="floating">{{pollClient.question2}}</ion-label>
+            <ion-input type="text" class="input" [(ngModel)]="pollClient.answer2Model" name="number" required></ion-input>
         </ion-item>  
         <ion-item class="group">
-            <ion-label for="user" class="label" position="floating">{{poll.pregunta3}}</ion-label>
-            <ion-input type="text" class="input" [(ngModel)]="poll.respuesta3" name="number" required></ion-input>
+            <ion-label for="user" class="label" position="floating">{{pollClient.question3}}</ion-label>
+            <ion-input type="text" class="input" [(ngModel)]="pollClient.answer3Model" name="number" required></ion-input>
         </ion-item>  
         <ion-item class="group">
-            <ion-label for="user" class="label" position="floating">{{poll.pregunta4}}</ion-label>
-            <ion-input type="text" class="input" [(ngModel)]="poll.respuesta4" name="number" required></ion-input>
+            <ion-label for="user" class="label" position="floating">{{pollClient.question4}}</ion-label>
+            <ion-input type="text" class="input" [(ngModel)]="pollClient.answer4Model" name="number" required></ion-input>
         </ion-item>  
         <ion-item class="group">
-            <ion-label for="user" class="label" position="floating">{{poll.pregunta5}}</ion-label>
-            <ion-input type="text" class="input" [(ngModel)]="poll.respuesta5" name="number" required></ion-input>
+            <ion-label for="user" class="label" position="floating">{{pollClient.question5}}</ion-label>
+            <ion-input type="text" class="input" [(ngModel)]="pollClient.answer5Model" name="number" required></ion-input>
         </ion-item>  
         <ion-item class="group">
-        <ion-label for="user" class="label" position="floating">{{poll.pregunta6}}</ion-label>
-            <ion-input type="text" class="input" [(ngModel)]="poll.respuesta6" name="number" required></ion-input>
+            <ion-label for="user" class="label" position="floating">{{pollClient.question6}}</ion-label>
+            <ion-input type="text" class="input" [(ngModel)]="pollClient.answer6Model" name="number" required></ion-input>
+        </ion-item> 
+        <ion-item class="group">
+            <ion-label for="user" class="label" position="floating">Comentario</ion-label>
+            <ion-input type="text" class="input" [(ngModel)]="pollClient.commentaryModel" name="number" required></ion-input>
         </ion-item>    
       </ion-list>
       <ion-button color="medium" (click)="takePhoto()">Sacar Foto</ion-button>
-      <ion-button color="medium" (click)="register()">Enviar</ion-button>
+      <ion-button color="medium" (click)="savePoll()">Enviar</ion-button>
     </form>
 </ion-content>

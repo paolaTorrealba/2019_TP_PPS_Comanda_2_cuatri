@@ -5,20 +5,26 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
+  // administrador
   { path: 'listado', loadChildren: './pages/lists/lists.module#ListsPageModule' },
   { path: 'registro/:object', loadChildren: './pages/register/register.module#RegisterPageModule' },
+  { path: 'modificar/:object/:id', loadChildren: './pages/modify/modify.module#ModifyPageModule' },
   //{ path: 'modificar/:object/:id', loadChildren: './pages/add/add.module#AddPageModule' },
   { path: 'configuracion', loadChildren: './pages/configuration/configuration.module#ConfigurationPageModule' },
   { path: 'lista-de-espera', loadChildren: './pages/wait-list/wait-list.module#WaitListPageModule' },
   { path: 'reservar', loadChildren: './pages/book/book.module#BookPageModule' },
   { path: 'delivery', loadChildren: './pages/delivery/delivery.module#DeliveryPageModule' },
   { path: 'encuestas', loadChildren: './pages/poll/poll.module#PollPageModule' },
+//  cliente
   { path: 'encuestas-cliente', loadChildren: './pages/poll-client-list/poll-client-list.module#PollClientListPageModule' },
+//  empleado
   { path: 'encuestas-empleado', loadChildren: './pages/poll-employee-list/poll-employee-list.module#PollEmployeeListPageModule' },
   { path: 'juego-cliente', loadChildren: './pages/play-client/play-client.module#PlayClientPageModule' },
   { path: 'hacer-encuesta-cliente', loadChildren: './pages/poll-cliente/poll-cliente.module#PollClientePageModule' },
   { path: 'hacer-encuesta-empleado', loadChildren: './pages/poll-empleoyee/poll-empleoyee.module#PollEmpleoyeePageModule' },
-  { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' }
+  { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },
+  { path: 'modify', loadChildren: './pages/modify/modify.module#ModifyPageModule' }
+
 ]
 
 @NgModule({

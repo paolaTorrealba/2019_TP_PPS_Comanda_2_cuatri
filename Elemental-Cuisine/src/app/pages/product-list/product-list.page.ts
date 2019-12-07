@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/classes/product';
+import { NotificationService } from 'src/app/services/notification.service';
+import { Router } from '@angular/router';
 //import { PopoverController } from '@ionic/angular';
 
 @Component({
@@ -14,6 +16,7 @@ export class ProductListPage implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private router: Router,
     //public popoverController: PopoverController
   ) { 
     this.productService.getAllProducts('productos').subscribe(products => {
@@ -34,10 +37,11 @@ export class ProductListPage implements OnInit {
     this.productService.deleteProduct(productId);
   }
 
-  modifyProduct(product){
+  modifyProduct(event,productId){
     event.stopPropagation();
+  this.router.navigateByUrl('/modificar/producto/'+ productId);
   }
-
+  
   /*async showDetails(ev){
     const popover = await this.popoverController.create({
       component: "",

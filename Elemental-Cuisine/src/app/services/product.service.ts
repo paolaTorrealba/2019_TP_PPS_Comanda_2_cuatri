@@ -18,7 +18,16 @@ export class ProductService {
     return this.dataService.getAll(collection);
   }
 
+  updateProduct(collection: string, id: string, object: any) {
+    return this.dataService.update(collection, id, object);
+  }
+  getProductById(productId){
+    return this.dataService.getOne('productos', productId);
+  }
+
   deleteProduct(productId){
     this.dataService.deleteDocument('productos', productId);
   }
+
+
 }

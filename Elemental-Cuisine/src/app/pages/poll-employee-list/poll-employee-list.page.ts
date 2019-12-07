@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Poll } from 'src/app/classes/poll';
+import { PollEmployee } from 'src/app/classes/pollEmployee';
 import { PollService } from 'src/app/services/poll.service';
 
 
@@ -9,15 +9,15 @@ import { PollService } from 'src/app/services/poll.service';
   styleUrls: ['./poll-employee-list.page.scss'],
 })
 export class PollEmployeeListPage implements OnInit {
-  private polls: Array<Poll>;
+  private polls: Array<PollEmployee>;
 
   constructor(private pollService: PollService) { 
 
     this.pollService.getAllPollsEmployee('encuestas_empleados').subscribe(polls => {
-      this.polls = new Array<Poll>();
+      this.polls = new Array<PollEmployee>();
       console.log(this.polls);
       polls.forEach(document => {
-        const poll = document.payload.doc.data() as Poll;
+        const poll = document.payload.doc.data() as PollEmployee;
         poll.id = document.payload.doc.id;
         this.polls.push(poll); 
       })
