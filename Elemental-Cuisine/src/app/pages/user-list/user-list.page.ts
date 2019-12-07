@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/classes/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -12,6 +13,7 @@ export class UserListPage implements OnInit {
   users:Array<User>;
 
   constructor(
+    private router: Router,
     private userService: UserService
   ) { }
 
@@ -28,8 +30,9 @@ export class UserListPage implements OnInit {
     });
   }
 
-  modifyEmployee(user){
-
+  modifyEmployee(user){   
+      this.router.navigateByUrl('/modificar/usuario/'+ user.id);
+    
   }
 
   deleteEmployee(user){

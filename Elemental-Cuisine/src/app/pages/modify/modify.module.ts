@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ModifyPage } from './modify.page';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductFormComponent } from 'src/app/components/product-form/product-form.component';
-import { UserFormComponent } from 'src/app/components/user-form/user-form.component';
 import { ModifyTableComponent } from 'src/app/components/modify-table/modify-table.component';
+import { ModifyUserComponent } from 'src/app/components/modify-user/modify-user.component';
+import { ModifyProductComponent } from 'src/app/components/modify-product/modify-product.component';
 
 
 const routes: Routes = [
@@ -23,6 +23,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ModifyPage, ModifyTableComponent, ]
+  declarations: [ModifyPage, ModifyTableComponent, ModifyUserComponent ,ModifyProductComponent]
 })
 export class ModifyPageModule {}

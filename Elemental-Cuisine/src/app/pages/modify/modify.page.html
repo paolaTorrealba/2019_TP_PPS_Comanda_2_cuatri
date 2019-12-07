@@ -8,9 +8,9 @@
   </ion-header>
   
   <ion-content>
-    <!-- <app-user-form *ngIf="(object == 'cliente' || object == 'usuario' )" [isClient]="object == 'cliente'"></app-user-form> -->
+    <app-modify-user *ngIf="(object == 'cliente' || object == 'usuario' )"></app-modify-user>
   
     <app-modify-table *ngIf="object == 'mesa'"></app-modify-table>
   
-    <!-- <app-product-form *ngIf="object == 'producto'"></app-product-form> -->
+    <app-modify-product *ngIf="object == 'producto'"></app-modify-product> 
   </ion-content>
