@@ -8,6 +8,7 @@ const routes: Routes = [
   // administrador
   { path: 'listado', loadChildren: './pages/lists/lists.module#ListsPageModule' },
   { path: 'registro/:object', loadChildren: './pages/register/register.module#RegisterPageModule' },
+  { path: 'modificar/:object/:id', loadChildren: './pages/modify/modify.module#ModifyPageModule' },
   //{ path: 'modificar/:object/:id', loadChildren: './pages/add/add.module#AddPageModule' },
   { path: 'configuracion', loadChildren: './pages/configuration/configuration.module#ConfigurationPageModule' },
   { path: 'lista-de-espera', loadChildren: './pages/wait-list/wait-list.module#WaitListPageModule' },
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'juego-cliente', loadChildren: './pages/play-client/play-client.module#PlayClientPageModule' },
   { path: 'hacer-encuesta-cliente', loadChildren: './pages/poll-cliente/poll-cliente.module#PollClientePageModule' },
   { path: 'hacer-encuesta-empleado', loadChildren: './pages/poll-empleoyee/poll-empleoyee.module#PollEmpleoyeePageModule' },
-  { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' }
+  { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },
+  { path: 'modify', loadChildren: './pages/modify/modify.module#ModifyPageModule' }
+
 ]
 
 @NgModule({

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Table } from 'src/app/classes/table';
 import { TableService } from 'src/app/services/table.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-list',
@@ -12,7 +14,9 @@ export class TableListPage implements OnInit {
   private tables: Array<Table>;
 
   constructor(
-    private tableService: TableService
+    private tableService: TableService,
+    private router: Router,
+    private notificationService: NotificationService,
   ) { 
     this.tableService.getAllTables('mesas').subscribe(tables => {
       this.tables = new Array<Table>();
@@ -31,8 +35,9 @@ export class TableListPage implements OnInit {
     this.tableService.deleteTable(table.id);
   }
 
-  modifyTable(table){
-    
-  }
+  modifyTable(table){   
+    this.router.navigateByUrl('/modificar/mesa/'+ table.id);
+  }    
+  
 
 }
